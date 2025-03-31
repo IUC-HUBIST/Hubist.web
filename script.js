@@ -1,3 +1,4 @@
+// Menü butonlarına tıklayınca sayfada yumuşak geçiş sağla
 document.querySelectorAll('nav ul li a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href').startsWith("#")) {
