@@ -6,42 +6,37 @@ body {
 }
 
 header {
-    background: #333;
-    color: white;
-    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff; /* Header beyaz olsun */
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
-    height: 50px;
-    background-color: white; /* Logo arka planını beyaz yap */
+    height: 60px; /* Logonun boyutunu ayarlayabilirsin */
+    background-color: white; /* Logo arkaplanını beyaz yap */
     padding: 5px;
+    border-radius: 5px; /* Hafif köşeleri yuvarlat */
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 0 10px;
+    display: inline;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
-}
-
-section {
-    padding: 20px;
-    text-align: center;
-}
-
-h2 {
     color: #333;
+    font-weight: bold;
 }
 
+nav ul li a:hover {
+    color: #007BFF;
+}
