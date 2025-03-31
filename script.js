@@ -1,19 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("nav ul li a");
-
-    links.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const targetId = this.getAttribute("href").substring(1);
+document.querySelectorAll('nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith("#")) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: "smooth"
-                });
-            }
-        });
+            targetSection.scrollIntoView({ behavior: "smooth" });
+        }
     });
 });
-
