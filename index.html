@@ -43,11 +43,17 @@
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
   </section>
 
-  <!-- Yarışma Takvimi Bölümü -->
-  <section class="content" id="yarisma-takvimi">
+  <!-- Canvas ile Etkileşimli Çizim Alanı -->
+  <section class="content" id="canvas">
     <h2>Yarışma Takvimi</h2>
-    <div id="yarismalar"></div>
-    <p>Yarışma günü yaklaştıkça, takvim ilerleyecek ve önceki yarışmaların tarihleri de görüntülenecek.</p>
+    <p>Yarışmalarımıza hızla yaklaşan tarihler!</p>
+    <canvas id="drawingCanvas" width="400" height="400"></canvas>
+    <p>Geçmişteki yarışmalar:</p>
+    <ul>
+      <li><strong>Robolig 2025</strong> - 18.07.2025</li>
+      <li><strong>Savaşan İHA 2025</strong> - 25.09.2025</li>
+    </ul>
+    <p id="countdown"></p>
   </section>
 
   <!-- İletişim Bölümü -->
@@ -57,40 +63,49 @@
   </section>
 
   <script>
-    // Yarışma takvimi
-    const competitions = [
-      { name: "Robolig 2025", date: new Date("2025-07-18"), status: "upcoming" },
-      { name: "Savaşan İHA 2025", date: new Date("2025-09-10"), status: "upcoming" },
-      { name: "Robolig 2024", date: new Date("2024-07-18"), status: "completed" },
-      { name: "Savaşan İHA 2024", date: new Date("2024-09-10"), status: "completed" },
-    ];
+    // Canvas ile çizim yapma işlevselliği
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
 
-    const competitionsContainer = document.getElementById("yarismalar");
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
 
-    function renderCompetitions() {
-      competitionsContainer.innerHTML = "";  // Clear previous content
-      competitions.forEach(competition => {
-        const competitionDiv = document.createElement("div");
-        const dateDiff = Math.floor((competition.date - new Date()) / (1000 * 60 * 60 * 24));  // Gün cinsinden fark
+    canvas.addEventListener('mousemove', (e) => {
+      if (isDrawing) {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+      }
+    });
 
-        // Formatlı tarih
-        const dateStr = competition.date.toLocaleDateString('tr-TR', {
-          day: '2-digit', month: '2-digit', year: 'numeric'
-        });
+    canvas.addEventListener('mouseup', () => {
+      isDrawing = false;
+    });
 
-        // Yarışma içeriği
-        competitionDiv.classList.add("competition");
-        competitionDiv.innerHTML = `
-          <p class="${competition.status}">
-            ${competition.status === "completed" ? "Geçmiş Yarışma" : "Yaklaşan Yarışma"}: ${competition.name} (${dateStr}) 
-            ${competition.status === "upcoming" ? ` - ${dateDiff} gün kaldı` : ""}
-          </p>
-        `;
-        competitionsContainer.appendChild(competitionDiv);
-      });
-    }
+    // Sayaca göre tarih ve geri sayım
+    const countdownElement = document.getElementById("countdown");
+    const targetDate = new Date("2025-07-18T00:00:00").getTime(); // Robolig 2025
 
-    renderCompetitions();  // Sayfa yüklendiğinde yarışmaları render et
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Gün, saat, dakika ve saniye hesaplama
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `Yarışmaya ${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+
+      if (distance < 0) {
+        clearInterval(x);
+        countdownElement.innerHTML = "Yarışma başladı!";
+      }
+    }, 1000);
   </script>
 </body>
 </html>
