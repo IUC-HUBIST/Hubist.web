@@ -23,19 +23,20 @@
     </nav>
   </header>
 
-  <!-- Hero Bölümü ve Sayaç -->
+  <!-- Sayaç Bölümü -->
+  <section class="countdown">
+    <h2>Bir Sonraki Yarışmaya Kalan Süre</h2>
+    <p id="timer"></p>
+  </section>
+
+  <!-- Hero Bölümü -->
   <section class="hero" id="anasayfa">
     <div class="hero-content">
       <h1>HUBİST - Teknoloji ve İnovasyon</h1>
       <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
     </div>
-    <div class="countdown">
-      <h2>Bir Sonraki Yarışmaya Kalan Süre</h2>
-      <p id="timer">00 Gün 00 Saat 00 Dakika 00 Saniye</p>
-    </div>
   </section>
 
-  <!-- İçerik Bölümü -->
   <section class="content" id="biz-kimiz">
     <h2>Biz Kimiz?</h2>
     <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
@@ -46,21 +47,28 @@
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
   </section>
 
-  <!-- İletişim Bölümü -->
+  <!-- Canvas ile Etkileşimli Çizim Alanı -->
+  <section class="content" id="canvas">
+    <h2>Canvas ile Çizim Yapın</h2>
+    <p>İşte, üzerinde çizim yapabileceğiniz bir alan!</p>
+    <canvas id="drawingCanvas" width="400" height="400"></canvas>
+  </section>
+
   <section class="content" id="iletisim">
     <h2>İletişim</h2>
     <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
   </section>
 
   <script>
-    // Sayaç İşlevselliği
+    // Sayaç Kodu
     function startCountdown(targetDate) {
-      function updateCountdown() {
+      function updateTimer() {
         const now = new Date().getTime();
         const timeLeft = targetDate - now;
 
-        if (timeLeft < 0) {
-          document.getElementById("timer").innerHTML = "Süre doldu!";
+        if (timeLeft <= 0) {
+          document.getElementById("timer").innerText = "Yarışma başladı!";
+          clearInterval(timerInterval);
           return;
         }
 
@@ -69,16 +77,38 @@
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("timer").innerHTML = `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
+        document.getElementById("timer").innerText = `${days}g ${hours}s ${minutes}dk ${seconds}sn`;
       }
 
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
+      updateTimer();
+      const timerInterval = setInterval(updateTimer, 1000);
     }
 
-    // Örnek tarih: 1 Temmuz 2025
-    const targetDate = new Date("July 1, 2025 00:00:00").getTime();
-    startCountdown(targetDate);
+    // Örnek: 1 Temmuz 2025 tarihinde yarışma var
+    const competitionDate = new Date("2025-07-01T00:00:00").getTime();
+    startCountdown(competitionDate);
+
+    // Canvas ile çizim yapma
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (isDrawing) {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+      }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDrawing = false;
+    });
   </script>
 </body>
 </html>
