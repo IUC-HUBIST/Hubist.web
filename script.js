@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Yarışma tarihleri
     const competitions = [
         { name: 'Robolig', date: new Date('2025-07-18') },
-        { name: 'Savaşan İHA', date: new Date('2025-07-25') }, // Tarih düzeltildi
+        { name: 'Savaşan İHA', date: new Date('2025-07-25') },  // Düzeltilmiş tarih
     ];
 
     // Bugünün tarihi
@@ -53,9 +53,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    // Progress Bar Güncelleme
-    const progressBar = document.getElementById('progress-bar');
-    const maxWidth = 100; // %100
-    progressBar.style.width = `${(minDays / 30) * maxWidth}%`;
 });
