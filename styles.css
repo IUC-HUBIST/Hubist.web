@@ -1,39 +1,30 @@
-/* Logo boyutlandırma */
-.logo {
-    width: 150px;  /* Burada istediğin boyutu ayarlayabilirsin */
-    height: auto;
-    display: block;
-    margin: 0 auto;  /* Ortalamak için */
-}
-
-/* Diğer genel stil ayarları */
+/* Genel Stil */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
-
-header {
-    background-color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.5em;
     color: #333;
 }
 
-/* Diğer bölümler için stil ayarları */
-section {
-    padding: 20px;
+/* Header ve Logo */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    text-align: center;
 }
 
 nav a {
     text-decoration: none;
     color: #333;
     padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 5px;
 }
 
 nav a:hover {
@@ -41,13 +32,41 @@ nav a:hover {
     color: white;
 }
 
-/* İçerik bölümü */
-section h2 {
-    font-size: 2em;
-    color: #333;
+.logo-container {
+    text-align: center;
+    margin-top: 20px;
 }
 
-section p {
-    font-size: 1.2em;
-    color: #666;
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+/* Ana Sayfa */
+main {
+    padding: 20px;
+}
+
+section {
+    margin: 20px 0;
+}
+
+h1, h2 {
+    color: #007BFF;
+}
+
+/* Biz Kimiz ve Diğer Bölümler */
+#biz-kimiz, #yarismalar, #iletisim {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
 }
