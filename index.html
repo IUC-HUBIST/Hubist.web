@@ -10,7 +10,6 @@
   <!-- Header ve Navigasyon -->
   <header>
     <div class="logo">
-      <!-- Logo'ya tıklayınca anasayfaya yönlendir -->
       <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
     </div>
     <nav>
@@ -32,80 +31,32 @@
     </div>
   </section>
 
-  <!-- İçerik Bölümü -->
-  <section class="content" id="biz-kimiz">
-    <h2>Biz Kimiz?</h2>
-    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
-  </section>
-
+  <!-- Yarışmalar Bölümü -->
   <section class="content" id="yarisma">
     <h2>Yarışmalar</h2>
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
+    <div id="days-left"></div> <!-- En yakın yarışma ile ilgili geri sayım mesajı -->
+    <div id="progress-container" style="width: 100%; height: 10px; background: #ddd; border-radius: 5px;">
+        <div id="progress-bar" style="height: 100%; background: #f39c12; border-radius: 5px;"></div>
+    </div>
   </section>
 
-  <!-- Canvas ile Etkileşimli Çizim Alanı -->
-  <section class="content" id="canvas">
-    <h2>Yarışma Takvimi</h2>
-    <p>Yarışmalarımıza hızla yaklaşan tarihler!</p>
-    <canvas id="drawingCanvas" width="400" height="400"></canvas>
-    <p>Geçmişteki yarışmalar:</p>
-    <ul>
-      <li><strong>Robolig 2025</strong> - 18.07.2025</li>
-      <li><strong>Savaşan İHA 2025</strong> - 25.09.2025</li>
-    </ul>
-    <p id="countdown"></p>
+  <!-- Diğer İçerikler -->
+  <section class="content" id="biz-kimiz">
+    <h2>Biz Kimiz?</h2>
+    <p>HUBİST, Elektrik-Elektronik Mühendisliği öğrencilerinin liderliğinde faaliyet gösteren bir öğrenci kulübüdür. Amacımız, teknolojiyi kullanarak, dünyayı daha iyi bir yer haline getirmektir.</p>
   </section>
 
-  <!-- İletişim Bölümü -->
   <section class="content" id="iletisim">
     <h2>İletişim</h2>
-    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
+    <p>Bize ulaşmak için: <a href="mailto:info@hubist.com">info@hubist.com</a></p>
   </section>
 
-  <script>
-    // Canvas ile çizim yapma işlevselliği
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 HUBİST - Tüm Hakları Saklıdır.</p>
+  </footer>
 
-    canvas.addEventListener('mousedown', (e) => {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      if (isDrawing) {
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-      }
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      isDrawing = false;
-    });
-
-    // Sayaca göre tarih ve geri sayım
-    const countdownElement = document.getElementById("countdown");
-    const targetDate = new Date("2025-07-18T00:00:00").getTime(); // Robolig 2025
-
-    setInterval(function() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      // Gün, saat, dakika ve saniye hesaplama
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownElement.innerHTML = `Yarışmaya ${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
-
-      if (distance < 0) {
-        clearInterval(x);
-        countdownElement.innerHTML = "Yarışma başladı!";
-      }
-    }, 1000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
