@@ -1,84 +1,52 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUBİST - Anasayfa</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUBİST - Yarışma Takvimi</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header ve Navigasyon -->
-  <header>
-    <div class="logo">
-      <!-- Logo'ya tıklayınca anasayfaya yönlendir -->
-      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#anasayfa">Anasayfa</a></li>
-        <li><a href="#biz-kimiz">Biz Kimiz</a></li>
-        <li><a href="#yarisma">Yarışmalar</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
-        <!-- Blog butonunun işlevselliği -->
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="HUBİST Logosu" onclick="window.location.href='index.html'">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa">Anasayfa</a></li>
+                <li><a href="#biz-kimiz">Biz Kimiz?</a></li>
+                <li><a href="#yarisma">Yarışmalar</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero Bölümü -->
-  <section class="hero" id="anasayfa">
-    <div class="hero-content">
-      <h1>HUBİST - Teknoloji ve İnovasyon</h1>
-      <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
-    </div>
-  </section>
+    <main>
+        <section id="yarisma">
+            <h2>Yarışma Takvimi</h2>
+            <div class="timeline">
+                <div class="timeline-item past" style="left: 0%;">
+                    <div class="timeline-content">
+                        <h3>Robolig</h3>
+                        <p>18 Temmuz 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item upcoming" style="left: 50%;">
+                    <div class="timeline-content">
+                        <h3>Savaşan İHA</h3>
+                        <p>15 Ağustos 2025</p>
+                    </div>
+                </div>
+            </div>
+            <p id="days-left"></p>
+        </section>
+    </main>
 
-  <!-- İçerik Bölümü -->
-  <section class="content" id="biz-kimiz">
-    <h2>Biz Kimiz?</h2>
-    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
-  </section>
+    <footer>
+        <p>&copy; 2025 HUBİST Takımı. Tüm hakları saklıdır.</p>
+    </footer>
 
-  <section class="content" id="yarisma">
-    <h2>Yarışmalar</h2>
-    <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
-  </section>
-
-  <!-- Canvas ile Etkileşimli Çizim Alanı -->
-  <section class="content" id="canvas">
-    <h2>Canvas ile Çizim Yapın</h2>
-    <p>İşte, üzerinde çizim yapabileceğiniz bir alan!</p>
-    <canvas id="drawingCanvas" width="400" height="400"></canvas>
-  </section>
-
-  <!-- İletişim Bölümü -->
-  <section class="content" id="iletisim">
-    <h2>İletişim</h2>
-    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
-  </section>
-
-  <script>
-    // Canvas ile çizim yapma işlevselliği
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-
-    canvas.addEventListener('mousedown', (e) => {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      if (isDrawing) {
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-      }
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      isDrawing = false;
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
