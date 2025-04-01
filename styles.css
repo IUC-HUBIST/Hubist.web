@@ -1,4 +1,12 @@
-/* Genel Stiller */
+/* Logo boyutlandırma */
+.logo {
+    width: 150px;  /* Burada istediğin boyutu ayarlayabilirsin */
+    height: auto;
+    display: block;
+    margin: 0 auto;  /* Ortalamak için */
+}
+
+/* Diğer genel stil ayarları */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,94 +14,40 @@ body {
     background-color: #f4f4f4;
 }
 
-h1, h2 {
+header {
+    background-color: #ffffff;
+    padding: 20px 0;
     text-align: center;
 }
 
-p {
-    text-align: justify;
-    margin: 15px;
-    font-size: 18px;
+h1 {
+    font-size: 2.5em;
+    color: #333;
 }
 
-/* Header */
-#header {
-    background-color: #343a40;
-    color: white;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Diğer bölümler için stil ayarları */
+section {
+    padding: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
     padding: 10px 20px;
 }
 
-#header .logo-container {
-    display: flex;
-    align-items: center;
+nav a:hover {
+    background-color: #007BFF;
+    color: white;
 }
 
-#header .logo-container .logo {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-}
-
-#header h1 {
+/* İçerik bölümü */
+section h2 {
     font-size: 2em;
-    margin: 0;
+    color: #333;
 }
 
-#header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-#header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-}
-
-#header nav ul li a:hover {
-    color: #f1c40f;
-}
-
-/* Section Stilleri */
-section {
-    padding: 40px 20px;
-}
-
-section#anasayfa {
-    background-color: #ffffff;
-    text-align: center;
-}
-
-section#bizmiz, section#yarismabilgisi, section#iletisim {
-    background-color: #f0f0f0;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #343a40;
-    color: white;
-}
-
-/* Animasyonlar */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-h2 {
-    animation: slideIn 1s ease-out;
+section p {
+    font-size: 1.2em;
+    color: #666;
 }
