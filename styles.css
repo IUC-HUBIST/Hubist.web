@@ -178,4 +178,20 @@ nav ul li a:hover {
   .hero p {
     font-size: 1.2rem;
   }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+
+  .content {
+    margin: 80px 10px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
 }
