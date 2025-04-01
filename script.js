@@ -27,4 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         daysLeftElement.textContent = 'Yaklaşan bir yarışma bulunmamaktadır.';
     }
-});
+
+    // Zaman çizgisini güncelleme
+    const robokigItem = document.getElementById('robokig-timeline-item');
+    const ihaItem = document.getElementById('iha-timeline-item');
+
+    competitions.forEach((comp, index) => {
+        const timeDiff = comp.date - today;
+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        
+        // Eğer geçmişteki yarışma ise, past sınıfı ver
+        if (daysDiff < 0) {
+            if (index === 0) {
+                robokigItem.classList.add('past');
+            } else {
+                ihaItem.classList.add('past');
+            }
+        }
+        // Eğer yakındaki yarışma ise, upcoming sınıfı ver
+        else if (daysDiff > 0) {
+            if (index === 0) {
+                robokigItem.classList.add('upcoming');
+            } else {
+                ihaItem.classList.add('
