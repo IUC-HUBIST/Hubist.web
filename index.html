@@ -1,54 +1,96 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUBİST - Yarışma Takvimi</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUBİST - Anasayfa</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="HUBİST Logosu" onclick="window.location.href='index.html'">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#anasayfa">Anasayfa</a></li>
-                <li><a href="#biz-kimiz">Biz Kimiz?</a></li>
-                <li><a href="#yarisma">Yarışmalar</a></li>
-                <li><a href="#iletisim">İletişim</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Header ve Navigasyon -->
+  <header>
+    <div class="logo">
+      <!-- Logo'ya tıklayınca anasayfaya yönlendir -->
+      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#anasayfa">Anasayfa</a></li>
+        <li><a href="#biz-kimiz">Biz Kimiz</a></li>
+        <li><a href="#yarisma">Yarışmalar</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section id="yarisma">
-            <h2>Yarışma Takvimi</h2>
-            <div class="timeline">
-                <!-- Robolig -->
-                <div class="timeline-item past" id="robokig-timeline-item">
-                    <div class="timeline-content">
-                        <h3>Robolig</h3>
-                        <p>18 Temmuz 2025</p>
-                    </div>
-                </div>
-                <!-- Savaşan İHA -->
-                <div class="timeline-item upcoming" id="iha-timeline-item">
-                    <div class="timeline-content">
-                        <h3>Savaşan İHA</h3>
-                        <p>15 Ağustos 2025</p>
-                    </div>
-                </div>
-            </div>
-            <p id="days-left"></p>
-        </section>
-    </main>
+  <!-- Hero Bölümü -->
+  <section class="hero" id="anasayfa">
+    <div class="hero-content">
+      <h1>HUBİST - Teknoloji ve İnovasyon</h1>
+      <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 HUBİST Takımı. Tüm hakları saklıdır.</p>
-    </footer>
+  <!-- İçerik Bölümü -->
+  <section class="content" id="biz-kimiz">
+    <h2>Biz Kimiz?</h2>
+    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
+  </section>
 
-    <script src="script.js"></script>
+  <section class="content" id="yarisma">
+    <h2>Yarışmalar</h2>
+    <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
+  </section>
+
+  <!-- Yarışma Takvimi Bölümü -->
+  <section class="content" id="yarisma-takvimi">
+    <h2>Yarışma Takvimi</h2>
+    <div id="yarismalar"></div>
+    <p>Yarışma günü yaklaştıkça, takvim ilerleyecek ve önceki yarışmaların tarihleri de görüntülenecek.</p>
+  </section>
+
+  <!-- İletişim Bölümü -->
+  <section class="content" id="iletisim">
+    <h2>İletişim</h2>
+    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
+  </section>
+
+  <script>
+    // Yarışma takvimi
+    const competitions = [
+      { name: "Robolig 2025", date: new Date("2025-07-18"), status: "upcoming" },
+      { name: "Savaşan İHA 2025", date: new Date("2025-09-10"), status: "upcoming" },
+      { name: "Robolig 2024", date: new Date("2024-07-18"), status: "completed" },
+      { name: "Savaşan İHA 2024", date: new Date("2024-09-10"), status: "completed" },
+    ];
+
+    const competitionsContainer = document.getElementById("yarismalar");
+
+    function renderCompetitions() {
+      competitionsContainer.innerHTML = "";  // Clear previous content
+      competitions.forEach(competition => {
+        const competitionDiv = document.createElement("div");
+        const dateDiff = Math.floor((competition.date - new Date()) / (1000 * 60 * 60 * 24));  // Gün cinsinden fark
+
+        // Formatlı tarih
+        const dateStr = competition.date.toLocaleDateString('tr-TR', {
+          day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+
+        // Yarışma içeriği
+        competitionDiv.classList.add("competition");
+        competitionDiv.innerHTML = `
+          <p class="${competition.status}">
+            ${competition.status === "completed" ? "Geçmiş Yarışma" : "Yaklaşan Yarışma"}: ${competition.name} (${dateStr}) 
+            ${competition.status === "upcoming" ? ` - ${dateDiff} gün kaldı` : ""}
+          </p>
+        `;
+        competitionsContainer.appendChild(competitionDiv);
+      });
+    }
+
+    renderCompetitions();  // Sayfa yüklendiğinde yarışmaları render et
+  </script>
 </body>
 </html>
