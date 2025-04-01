@@ -49,4 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index === 0) {
                 robokigItem.classList.add('upcoming');
             } else {
-                ihaItem.classList.add('
+                ihaItem.classList.add('upcoming');
+            }
+        }
+    });
+});
