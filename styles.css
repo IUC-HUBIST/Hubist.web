@@ -1,7 +1,7 @@
 /* CSS Değişkenleri ve Reset */
 :root {
-  --primary-color: #1F2A44;
-  --secondary-color: #f39c12;
+  --primary-color: #1F2A44; /* Kurumsal koyu mavi/gri */
+  --secondary-color: #f39c12; /* Vurgu rengi: sıcak turuncu */
   --bg-color: #f5f7fa;
   --white: #ffffff;
   --text-color: #333;
@@ -46,6 +46,10 @@ header {
   transition: transform 0.3s;
 }
 
+.logo img:hover {
+  transform: scale(1.1);
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -59,13 +63,63 @@ nav ul li a {
   font-weight: 700;
   padding: 10px 15px;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s, letter-spacing 0.3s;
 }
 
 nav ul li a:hover {
   background-color: var(--secondary-color);
   transform: scale(1.05);
-  letter-spacing: 1px;
+  letter-spacing: 1px;  /* Hover üzerine yazı arasını açma */
+}
+
+/* Hero Bölümü */
+.hero {
+  height: 100vh;
+  background: url('images/background.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding-top: var(--header-height);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+  animation: fadeInText 2s ease-out forwards;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: fadeInText 2s ease-out forwards;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* İçerik Bölümleri */
@@ -80,6 +134,12 @@ nav ul li a:hover {
   opacity: 0;
   transform: translateY(50px);
   animation: slideUp 1s ease-out forwards;
+  border-top: 3px solid var(--secondary-color);  /* İçerik bölümleri üst kısmına çizgi ekledik */
+}
+
+.content:nth-of-type(even) {
+  background-color: #eef2f7;
+  border-top: 3px solid var(--primary-color);  /* Çift içerikler için renk uyumu */
 }
 
 .content h2 {
@@ -98,25 +158,15 @@ nav ul li a:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Yarışma Takvimi */
-#yarismalar .competition {
-  padding: 10px;
-  margin-bottom: 15px;
-  background-color: var(--bg-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
+/* Animasyonlar */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-#yarismalar .competition p {
-  font-size: 1.2rem;
-}
-
-#yarismalar .competition .upcoming {
-  color: green;
-}
-
-#yarismalar .competition .completed {
-  color: red;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive Design */
@@ -127,21 +177,5 @@ nav ul li a:hover {
 
   .hero p {
     font-size: 1.2rem;
-  }
-
-  nav ul {
-    gap: 15px;
-  }
-
-  nav ul li a {
-    font-size: 0.9rem;
-  }
-
-  .content {
-    margin: 80px 10px;
-  }
-
-  .logo img {
-    height: 50px;
   }
 }
