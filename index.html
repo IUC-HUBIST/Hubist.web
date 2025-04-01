@@ -1,112 +1,54 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUBİST - Anasayfa</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUBİST - Teknoloji ve İnovasyon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header ve Navigasyon -->
-  <header>
-    <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#anasayfa">Anasayfa</a></li>
-        <li><a href="#biz-kimiz">Biz Kimiz</a></li>
-        <li><a href="#yarisma">Yarışmalar</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="HUBİST Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Anasayfa</a></li>
+                <li><a href="#about">Biz Kimiz</a></li>
+                <li><a href="#competitions">Yarışmalar</a></li>
+                <li><a href="#contact">İletişim</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>HUBİST - Teknoloji ve İnovasyon</h1>
+            <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
+            <p class="countdown"> <strong>En yakın yarışma:</strong> Robolig - 108 gün kaldı.</p>
+        </div>
+    </section>
 
-  <!-- Hero Bölümü -->
-  <section class="hero" id="anasayfa">
-    <div class="hero-content">
-      <h1>HUBİST - Teknoloji ve İnovasyon</h1>
-      <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
-      <div id="days-left"></div> <!-- Geri sayım kısmı -->
-    </div>
-  </section>
+    <main>
+        <section class="content" id="about">
+            <h2>Biz Kimiz?</h2>
+            <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
+        </section>
 
-  <!-- İçerik Bölümü -->
-  <section class="content" id="biz-kimiz">
-    <h2>Biz Kimiz?</h2>
-    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
-  </section>
+        <section class="content" id="competitions">
+            <h2>Yarışmalar</h2>
+            <p>HUBİST, birçok teknoloji yarışmasına yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
+        </section>
 
-  <section class="content" id="yarisma">
-    <h2>Yarışmalar</h2>
-    <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
-  </section>
-
-  <!-- Canvas ile Etkileşimli Çizim Alanı -->
-  <section class="content" id="canvas">
-    <h2>Canvas ile Çizim Yapın</h2>
-    <p>İşte, üzerinde çizim yapabileceğiniz bir alan!</p>
-    <canvas id="drawingCanvas" width="400" height="400"></canvas>
-  </section>
-
-  <!-- İletişim Bölümü -->
-  <section class="content" id="iletisim">
-    <h2>İletişim</h2>
-    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
-  </section>
-
-  <script>
-    // Yarışma tarihleri
-    const competitions = [
-      { name: 'Robolig', date: new Date('2025-07-18') },
-      { name: 'Savaşan İHA', date: new Date('2025-07-25') },  // Savaşan İHA tarihini 25.07.2025 olarak güncelledik
-    ];
-
-    // Bugünün tarihi
-    const today = new Date();
-
-    // En yakın yarışmanın gün sayısını hesapla
-    let closestCompetition = null;
-    let minDays = Infinity;
-    competitions.forEach(comp => {
-        const timeDiff = comp.date - today;
-        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        if (daysDiff >= 0 && daysDiff < minDays) {
-            minDays = daysDiff;
-            closestCompetition = comp;
-        }
-    });
-
-    // Geriye kalan gün sayısını göster
-    const daysLeftElement = document.getElementById('days-left');
-    if (closestCompetition) {
-        daysLeftElement.textContent = `En yakın yarışma: ${closestCompetition.name} - ${minDays} gün kaldı.`;
-    } else {
-        daysLeftElement.textContent = 'Yaklaşan bir yarışma bulunmamaktadır.';
-    }
-
-    // Canvas ile çizim yapma işlevselliği
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-
-    canvas.addEventListener('mousedown', (e) => {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      if (isDrawing) {
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-      }
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      isDrawing = false;
-    });
-  </script>
+        <section class="content" id="canvas-draw">
+            <h2>Canvas ile Çizim Yapın</h2>
+            <p>İşte, üzerinde çizim yapabileceğiniz bir alan!</p>
+            <canvas id="drawingCanvas" width="600" height="400"></canvas>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>
