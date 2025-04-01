@@ -1,7 +1,7 @@
 /* CSS Değişkenleri ve Reset */
 :root {
-  --primary-color: #1F2A44; /* Kurumsal koyu mavi/gri */
-  --secondary-color: #f39c12; /* Vurgu rengi: sıcak turuncu */
+  --primary-color: #1F2A44;
+  --secondary-color: #f39c12;
   --bg-color: #f5f7fa;
   --white: #ffffff;
   --text-color: #333;
@@ -69,7 +69,7 @@ nav ul li a {
 nav ul li a:hover {
   background-color: var(--secondary-color);
   transform: scale(1.05);
-  letter-spacing: 1px;  /* Hover üzerine yazı arasını açma */
+  letter-spacing: 1px;
 }
 
 /* Hero Bölümü */
@@ -104,58 +104,52 @@ nav ul li a:hover {
 .hero h1 {
   font-size: 4rem;
   margin-bottom: 20px;
-  animation: fadeInText 2s ease-out forwards;
 }
 
 .hero p {
   font-size: 1.5rem;
 }
 
-@keyframes fadeInText {
+/* Yarışmalar Bölümü */
+#days-left {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-top: 20px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.days-left-container {
+  position: relative;
+}
+
+#days-left::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #333;
+  animation: moveLine 5s infinite;
+}
+
+@keyframes moveLine {
   0% {
-    opacity: 0;
-    transform: translateY(-20px);
+    left: 0;
+  }
+  50% {
+    left: 50%;
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    left: 100%;
   }
 }
 
-/* İçerik Bölümleri */
-.content {
-  max-width: 900px;
-  margin: 120px auto 80px;
-  padding: 40px 20px;
-  background-color: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: slideUp 1s ease-out forwards;
-  border-top: 3px solid var(--secondary-color);  /* İçerik bölümleri üst kısmına çizgi ekledik */
-}
-
-.content:nth-of-type(even) {
-  background-color: #eef2f7;
-  border-top: 3px solid var(--primary-color);  /* Çift içerikler için renk uyumu */
-}
-
-.content h2 {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  color: var(--primary-color);
-}
-
-.content p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Progress Bar */
+#progress-container {
+  margin-top: 20px;
 }
 
 /* Animasyonlar */
@@ -169,7 +163,6 @@ nav ul li a:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.5rem;
