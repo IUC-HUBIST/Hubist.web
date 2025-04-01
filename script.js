@@ -1,32 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Menü linklerine tıklayınca yumuşak kaydırma efekti sağla
-  document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      // Eğer iç link ise
-      if (this.getAttribute('href').startsWith('#')) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
+    // Yarışma tarihleri
+    const competitions = [
+        { name: 'Robolig', date: new Date('2025-07-18') },
+        { name: 'Savaşan İHA', date: new Date('2025-08-15') },
+    ];
+
+    // Bugünün tarihi
+    const today = new Date();
+
+    // En yakın yarışmanın gün sayısını hesapla
+    let closestCompetition = null;
+    let minDays = Infinity;
+    competitions.forEach(comp => {
+        const timeDiff = comp.date - today;
+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        if (daysDiff >= 0 && daysDiff < minDays) {
+            minDays = daysDiff;
+            closestCompetition = comp;
         }
-      }
     });
-  });
 
-  // Scroll reveal efekti: İçerik bölümleri kaydırıldıkça belirginleşsin
-  const revealSections = document.querySelectorAll('.content');
-  const revealOnScroll = () => {
-    const windowHeight = window.innerHeight;
-    revealSections.forEach(section => {
-      const sectionTop = section.getBoundingClientRect().top;
-      if (sectionTop < windowHeight - 100) {
-        section.style.opacity = 1;
-        section.style.transform = 'translateY(0)';
-      }
-    });
-  };
-
-  window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll(); // Sayfa yüklendiğinde çalıştır
+    // Geriye kalan gün sayısını göster
+    const daysLeftElement = document.getElementById('days-left');
+    if (closestCompetition) {
+        daysLeftElement.textContent = `En yakın yarışma: ${closestCompetition.name} - ${minDays} gün kaldı.`;
+    } else {
+        daysLeftElement.textContent = 'Yaklaşan bir yarışma bulunmamaktadır.';
+    }
 });
