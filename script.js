@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Yarışma tarihleri
     const competitions = [
         { name: 'Robolig', date: new Date('2025-07-18') },
-        { name: 'Savaşan İHA', date: new Date('2025-07-25') }, // Tarih burada güncellendi
+        { name: 'Savaşan İHA', date: new Date('2025-07-25') }, // Tarih düzeltildi
     ];
 
     // Bugünün tarihi
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Zaman çizgisini güncelleme
     const robokigItem = document.getElementById('robokig-timeline-item');
     const ihaItem = document.getElementById('iha-timeline-item');
-    const progressBar = document.getElementById('progress-bar');
 
     competitions.forEach((comp, index) => {
         const timeDiff = comp.date - today;
@@ -52,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 ihaItem.classList.add('upcoming');
             }
-
-            // Progress bar'ı güncelle
-            const totalDuration = comp.date - today;
-            const progress = 1 - (timeDiff / totalDuration);
-            progressBar.style.width = `${progress * 100}%`;
         }
     });
+
+    // Progress Bar Güncelleme
+    const progressBar = document.getElementById('progress-bar');
+    const maxWidth = 100; // %100
+    progressBar.style.width = `${(minDays / 30) * maxWidth}%`;
 });
