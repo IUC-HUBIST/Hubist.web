@@ -93,34 +93,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!details.classList.contains('active')) {
           details.querySelectorAll('img').forEach(img => {
-            img.style.objectFit = 'cover';
             img.style.transform = 'scale(1)';
-            img.style.border = 'none';
           });
         }
       }
     });
   });
 
-  // Gelişmiş görsel hover efekti (balon efekti)
+  // BASİTLEŞTİRİLMİŞ GÖRSEL HOVER EFEKTİ
   document.querySelectorAll('.competition-photos img').forEach(img => {
     img.addEventListener('mouseenter', () => {
-      img.style.objectFit = 'contain';
-      img.style.transform = 'scale(1.1)';
-      img.style.zIndex = '100';
-      img.style.background = 'white';
-      img.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
-      img.style.border = '3px solid #f39c12';
-      img.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      img.style.transform = 'scale(1.05)';
+      img.style.zIndex = '10';
+      img.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
     });
     
     img.addEventListener('mouseleave', () => {
-      img.style.objectFit = 'cover';
       img.style.transform = 'scale(1)';
       img.style.zIndex = '1';
-      img.style.background = 'transparent';
-      img.style.boxShadow = 'none';
-      img.style.border = 'none';
+      img.style.boxShadow = '0 3px 10px rgba(0,0,0,0.1)';
     });
   });
 
