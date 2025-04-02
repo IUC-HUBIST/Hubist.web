@@ -10,59 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Form validation fonksiyonu
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('email');
-      const messageInput = document.getElementById('message');
-      let isValid = true;
-
-      // Input validation
-      if (!nameInput.value.trim()) {
-        showError(nameInput, 'Lütfen adınızı giriniz');
-        isValid = false;
-      }
-
-      if (!emailInput.value.trim() || !validateEmail(emailInput.value)) {
-        showError(emailInput, 'Lütfen geçerli bir e-posta adresi giriniz');
-        isValid = false;
-      }
-
-      if (!messageInput.value.trim()) {
-        showError(messageInput, 'Lütfen mesajınızı giriniz');
-        isValid = false;
-      }
-
-      if (isValid) {
-        // Form gönderim işlemi (AJAX veya başka bir yöntem eklenebilir)
-        alert('Mesajınız başarıyla gönderildi!');
-        this.reset();
-      }
-    });
-
-    function showError(input, message) {
-      const formGroup = input.parentElement;
-      const errorText = formGroup.querySelector('.error-text') || document.createElement('span');
-      errorText.className = 'error-text';
-      errorText.textContent = message;
-      
-      if (!formGroup.querySelector('.error-text')) {
-        formGroup.appendChild(errorText);
-      }
-      
-      input.classList.add('error');
-    }
-
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-  }
-
   // Yarışma geri sayım fonksiyonları
   const races = [
     {
@@ -96,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const timeLeft = race.date - now;
         
-        // Geçmiş tarihleri kontrol et
         if (timeLeft < 0) {
           race.elements.progress.style.width = '100%';
           race.elements.countdown.textContent = 'Yarışma sona erdi';
@@ -107,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         
-        // Progress hesaplama (yıl başından itibaren)
         const yearStart = new Date(race.date.getFullYear(), 0, 1);
         const yearEnd = new Date(race.date.getFullYear() + 1, 0, 1);
         const progress = ((now - yearStart) / (yearEnd - yearStart)) * 100;
@@ -145,6 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
         this.textContent = details.classList.contains('active') 
           ? 'Detayları Gizle' 
           : 'Detayları Göster';
+        
+        if (!details.classList.contains('active')) {
+          details.querySelectorAll('img').forEach(img => {
+            img.style.objectFit = 'cover';
+          });
+        }
       }
     });
   });
@@ -152,11 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Resim hover efekti
   document.querySelectorAll('.competition-photos img').forEach(img => {
     img.addEventListener('mouseenter', () => {
+      img.style.objectFit = 'contain';
       img.style.transform = 'scale(1.05)';
-      img.style.transition = 'transform 0.3s ease';
+      img.style.zIndex = '10';
+      img.style.background = '#f5f5f5';
     });
+    
     img.addEventListener('mouseleave', () => {
+      img.style.objectFit = 'cover';
       img.style.transform = 'scale(1)';
+      img.style.zIndex = '1';
+      img.style.background = 'transparent';
     });
   });
 
@@ -180,6 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // İlk yüklemede geri sayımı güncelle
   if (races.length > 0) {
     updateCountdown();
-    setInterval(updateCountdown, 60000); // Her dakika güncelle
+    setInterval(updateCountdown, 60000);
   }
 });
