@@ -47,11 +47,15 @@
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
   </section>
 
-  <!-- Canvas ile Etkileşimli Çizim Alanı -->
-  <section class="content" id="canvas">
-    <h2>Canvas ile Çizim Yapın</h2>
-    <p>İşte, üzerinde çizim yapabileceğiniz bir alan!</p>
-    <canvas id="drawingCanvas" width="400" height="400"></canvas>
+  <!-- Çizgi ile Navigasyon İşareti ve Sayaç -->
+  <section class="content" id="line-progress">
+    <h2>Yarışmaya Kalan Zaman ve İlerleyen Navigasyon</h2>
+    <div id="progress-container">
+      <div id="progress-line">
+        <div id="progress-indicator"></div>
+      </div>
+    </div>
+    <p id="days-left">Yarışmaya Son: <span id="remaining-days">0</span> gün kaldı</p>
   </section>
 
   <section class="content" id="iletisim">
@@ -78,6 +82,13 @@
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
         document.getElementById("timer").innerText = `${days}g ${hours}s ${minutes}dk ${seconds}sn`;
+        
+        // Gün sayısını güncelle
+        document.getElementById("remaining-days").innerText = days;
+        
+        // Progress bar'ı güncelle
+        const progress = 100 - (timeLeft / (targetDate - now)) * 100;
+        document.getElementById("progress-indicator").style.width = `${progress}%`;
       }
 
       updateTimer();
@@ -87,28 +98,6 @@
     // Örnek: 1 Temmuz 2025 tarihinde yarışma var
     const competitionDate = new Date("2025-07-01T00:00:00").getTime();
     startCountdown(competitionDate);
-
-    // Canvas ile çizim yapma
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-
-    canvas.addEventListener('mousedown', (e) => {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      if (isDrawing) {
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-      }
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      isDrawing = false;
-    });
   </script>
 </body>
 </html>
