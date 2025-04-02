@@ -1,10 +1,38 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Yarışma verileri
+// Lightbox sistemi
+function initLightbox() {
+  const images = document.querySelectorAll('.competition-photos img');
+  const lightbox = document.createElement('div');
+  lightbox.id = 'lightbox';
+  lightbox.innerHTML = '<div class="lightbox-content"></div>';
+  document.body.appendChild(lightbox);
+
+  images.forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      lightbox.classList.add('active');
+      lightbox.querySelector('.lightbox-content').innerHTML = `
+        <img src="${img.src}" alt="${img.alt}">
+        <div class="lightbox-caption">${img.alt}</div>
+      `;
+    });
+  });
+
+  // Kapatma fonksiyonları
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.classList.remove('active');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+  });
+}
+
+// Yarışma sayaçları
+function initRaceTimers() {
   const races = [
     {
       id: "robolig",
-      name: "ROBOLİG",
-      date: new Date("2025-07-28T00:00:00"),
+      date: new Date("2025-07-28"),
       elements: {
         progress: document.getElementById("robolig-progress"),
         countdown: document.getElementById("robolig-countdown")
@@ -12,8 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: "savasah",
-      name: "SAVAŞAN İHA",
-      date: new Date("2025-08-22T00:00:00"),
+      date: new Date("2025-08-22"),
       elements: {
         progress: document.getElementById("savasah-progress"),
         countdown: document.getElementById("savasah-countdown")
@@ -21,82 +48,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ];
 
-  // Sayaç güncelleme fonksiyonu
-  function updateCountdown() {
+  function update() {
     const now = new Date();
-    let nextRace = null;
-    let minDaysLeft = Infinity;
-
+    
     races.forEach(race => {
-      const timeLeft = race.date - now;
-      const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const diff = race.date - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       
-      const progress = Math.min(
-        ((now - new Date(race.date.getFullYear(), 0, 1)) / (race.date - new Date(race.date.getFullYear(), 0, 1))) * 100, 
-        100
-      );
-
-      if(race.elements.progress) {
-        race.elements.progress.style.width = `${progress}%`;
-        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
-      }
-
-      if (daysLeft > 0 && daysLeft < minDaysLeft) {
-        minDaysLeft = daysLeft;
-        nextRace = race;
-      }
+      // Progress hesaplama
+      const startDate = new Date(race.date.getFullYear(), 0, 1);
+      const total = race.date - startDate;
+      const elapsed = now - startDate;
+      const progress = Math.min((elapsed / total) * 100, 100);
+      
+      // DOM güncelleme
+      race.elements.progress.style.width = `${progress}%`;
+      race.elements.countdown.textContent = `${days}g ${hours}s`;
     });
-
-    if (nextRace) {
-      document.getElementById('next-race-countdown').textContent = 
-        races.find(r => r.id === nextRace.id).elements.countdown.textContent;
-    }
   }
 
-  // Detay butonu fonksiyonu
-  document.querySelectorAll('.details-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const details = this.closest('.competition-card').querySelector('.card-details');
-      details.classList.toggle('active');
-      this.textContent = details.classList.contains('active') 
-        ? 'Detayları Gizle' 
-        : 'Detayları Göster';
+  update();
+  setInterval(update, 3600000); // Saatlik güncelleme
+}
+
+// Dokunmatik optimizasyon
+function initTouchSupport() {
+  let tapTimer;
+  document.querySelectorAll('.competition-photos img').forEach(img => {
+    img.addEventListener('touchstart', () => {
+      tapTimer = setTimeout(() => {
+        img.classList.add('long-tap');
+      }, 300);
+    });
+    
+    img.addEventListener('touchend', () => {
+      clearTimeout(tapTimer);
+      img.classList.remove('long-tap');
     });
   });
+}
 
-  // Lightbox fonksiyonu
-  function initLightbox() {
-    const images = document.querySelectorAll('.competition-photos img');
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    document.body.appendChild(lightbox);
-
-    images.forEach(image => {
-      image.addEventListener('click', (e) => {
-        e.stopPropagation();
-        lightbox.innerHTML = `<img src="${image.src}" alt="${image.alt}">`;
-        lightbox.classList.add('active');
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        lightbox.classList.remove('active');
-      }
-    });
-  }
-
-  // Lightbox'ı başlat
-  if(document.querySelector('.competition-photos img')) {
-    initLightbox();
-  }
-
-  // Sayaçları başlat
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
+// Başlatıcı
+document.addEventListener('DOMContentLoaded', () => {
+  initLightbox();
+  initRaceTimers();
+  initTouchSupport();
 });
