@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HUBİST - Anasayfa</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
-  <!-- Header ve Navigasyon -->
   <header>
     <div class="logo">
       <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
@@ -19,12 +18,10 @@
         <li><a href="#biz-kimiz">Biz Kimiz</a></li>
         <li><a href="#yarisma">Yarışmalar</a></li>
         <li><a href="#iletisim">İletişim</a></li>
-        <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Bölümü -->
   <section class="hero" id="anasayfa">
     <div class="hero-content">
       <h1>HUBİST - Teknoloji ve İnovasyon</h1>
@@ -37,12 +34,14 @@
     <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
   </section>
 
-  <!-- Yarışmalar Bölümü -->
   <section class="content" id="yarisma">
     <h2>Yarışmalar</h2>
-    <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
     
-    <!-- Yarışma Timer -->
+    <div class="next-race-timer">
+      <h3>Bir Sonraki Yarışmaya Kalan Süre</h3>
+      <div id="next-race-countdown">28g 15s</div>
+    </div>
+    
     <div class="race-container">
       <div class="race-item">
         <div class="race-header">
@@ -50,11 +49,8 @@
           <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
         </div>
         <div class="progress-container">
-          <div class="progress-bar" id="robolig-progress">
-            <div class="progress-cursor"></div>
-          </div>
+          <div class="progress-bar" id="robolig-progress"></div>
         </div>
-        <div class="time-left" id="robolig-days"></div>
       </div>
 
       <div class="race-item">
@@ -63,30 +59,26 @@
           <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
         </div>
         <div class="progress-container">
-          <div class="progress-bar" id="savasah-progress">
-            <div class="progress-cursor"></div>
-          </div>
+          <div class="progress-bar" id="savasah-progress"></div>
         </div>
-        <div class="time-left" id="savasah-days"></div>
       </div>
     </div>
   </section>
 
-  <!-- Katıldığımız Yarışmalar -->
   <section class="content" id="past-competitions">
     <h2>Katıldığımız Yarışmalar</h2>
     
     <div class="competition-gallery">
       <div class="competition-card">
         <div class="card-preview">
-          <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy" style="object-position: center 30%;">
+          <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy">
           <h3>2024 Teknofest RoboLig</h3>
           <button class="details-btn">Detayları Göster</button>
         </div>
         <div class="card-details">
           <div class="card-content">
             <h4>4.lük Ödülü</h4>
-            <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur. Bu başarımızı 2025 yılında daha ileriye taşımak ve 1. olabilmek için tüm gücümüzle hazırlanmaktayız.</p>
+            <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
             <div class="competition-photos">
               <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
               <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
@@ -97,7 +89,7 @@
               <h4>Yarışma Detayları</h4>
               <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
               <p><strong>Yer:</strong> İstanbul</p>
-              <p><strong>Takım Üyeleri:</strong> [Düzenlenecek]</p>
+              <p><strong>Takım Üyeleri:</strong> [Takım Bilgileri]</p>
             </div>
           </div>
         </div>
