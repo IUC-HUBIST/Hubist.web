@@ -116,5 +116,30 @@
       setInterval(updateTimeline, 60000);
     });
   </script>
+    <!-- ... Diğer HTML kodları ... -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const startDate = new Date('2025-07-28').getTime();
+      const endDate = new Date('2025-08-22').getTime();
+
+      function updateTimeline() {
+        const now = new Date().getTime();
+        const progress = Math.min(((now - startDate) / (endDate - startDate)) * 100, 100);
+        
+        document.querySelector('.timeline-progress').style.width = `${progress}%`;
+        document.querySelector('.timeline-cursor').style.left = `${progress}%`;
+        
+        document.querySelectorAll('.marker').forEach((marker, index) => {
+          marker.classList.toggle('active', index === (progress < 100 ? 0 : 1));
+        });
+      }
+
+      updateTimeline();
+      setInterval(updateTimeline, 60000);
+    });
+  </script>
+</body> <!-- BU KAPATMA ETİKETİNİN HEMEN ÖNCESİNE EKLEYİN -->
+</html>
 </body>
 </html>
