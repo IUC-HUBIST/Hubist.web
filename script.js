@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Lightbox kütüphanesi dinamik yükleme (fallback)
+  if (typeof FsLightbox === 'undefined') {
+    const lightboxScript = document.createElement('script');
+    lightboxScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js';
+    document.head.appendChild(lightboxScript);
+  }
+
   // Mobil menü toggle fonksiyonu
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navMenu = document.querySelector('nav ul');
@@ -90,22 +97,26 @@ document.addEventListener('DOMContentLoaded', function() {
         this.textContent = details.classList.contains('active') 
           ? 'Detayları Gizle' 
           : 'Detayları Göster';
-        
-        if (!details.classList.contains('active')) {
-          details.querySelectorAll('img').forEach(img => {
-            img.style.transform = 'scale(1)';
-          });
-        }
       }
     });
   });
 
-  // BASİTLEŞTİRİLMİŞ GÖRSEL HOVER EFEKTİ
+  // LIGHTBOX ÖZELLİKLİ GÖRSEL YÖNETİMİ
   document.querySelectorAll('.competition-photos img').forEach(img => {
+    // Lightbox için <a> wrapper ekleme
+    const wrapper = document.createElement('a');
+    wrapper.href = img.src;
+    wrapper.setAttribute('data-fslightbox', 'gallery');
+    wrapper.style.display = 'contents'; // Stil bozulmasını engeller
+    img.parentNode.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+
+    // Hover efekti
     img.addEventListener('mouseenter', () => {
       img.style.transform = 'scale(1.05)';
       img.style.zIndex = '10';
       img.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+      img.style.cursor = 'zoom-in';
     });
     
     img.addEventListener('mouseleave', () => {
@@ -148,5 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (races.length > 0) {
     updateCountdown();
     setInterval(updateCountdown, 60000);
+  }
+
+  // Lightbox'ı yeniden başlat (dinamik yüklenirse)
+  if (typeof refreshFsLightbox === 'function') {
+    refreshFsLightbox();
   }
 });
