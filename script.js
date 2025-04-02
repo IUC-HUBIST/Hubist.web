@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Yarışma verileri
   const races = [
     {
       id: "robolig",
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ];
 
+  // Sayaç güncelleme fonksiyonu
   function updateCountdown() {
     const now = new Date();
     let nextRace = null;
@@ -31,12 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       
       const progress = Math.min(
-        ((now - new Date(race.date.getFullYear(), 0, 1)) / (race.date - new Date(race.date.getFullYear(), 0, 1)) * 100, 
+        ((now - new Date(race.date.getFullYear(), 0, 1)) / (race.date - new Date(race.date.getFullYear(), 0, 1))) * 100, 
         100
       );
 
-      race.elements.progress.style.width = `${progress}%`;
-      race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
+      if(race.elements.progress) {
+        race.elements.progress.style.width = `${progress}%`;
+        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
+      }
 
       if (daysLeft > 0 && daysLeft < minDaysLeft) {
         minDaysLeft = daysLeft;
@@ -50,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Detay butonu fonksiyonu
   document.querySelectorAll('.details-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const details = this.closest('.competition-card').querySelector('.card-details');
@@ -60,47 +65,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  document.querySelectorAll('.competition-photos img').forEach(img => {
-    img.addEventListener('mouseenter', () => img.style.transform = 'scale(1.1)');
-    img.addEventListener('mouseleave', () => img.style.transform = 'scale(1)');
-  });
+  // Lightbox fonksiyonu
+  function initLightbox() {
+    const images = document.querySelectorAll('.competition-photos img');
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    document.body.appendChild(lightbox);
 
+    images.forEach(image => {
+      image.addEventListener('click', (e) => {
+        e.stopPropagation();
+        lightbox.innerHTML = `<img src="${image.src}" alt="${image.alt}">`;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+      }
+    });
+  }
+
+  // Lightbox'ı başlat
+  if(document.querySelector('.competition-photos img')) {
+    initLightbox();
+  }
+
+  // Sayaçları başlat
   updateCountdown();
   setInterval(updateCountdown, 60000);
 });
-// Lightbox fonksiyonu
-function initLightbox() {
-  const images = document.querySelectorAll('.competition-photos img');
-  const lightbox = document.createElement('div');
-  lightbox.id = 'lightbox';
-  document.body.appendChild(lightbox);
-
-  images.forEach(image => {
-    image.addEventListener('click', () => {
-      lightbox.classList.add('active');
-      const img = document.createElement('img');
-      img.src = image.src;
-      img.alt = image.alt;
-      
-      while (lightbox.firstChild) {
-        lightbox.removeChild(lightbox.firstChild);
-      }
-      lightbox.appendChild(img);
-    });
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target !== e.currentTarget) return;
-    lightbox.classList.remove('active');
-  });
-
-  // ESC tuşuyla kapatma
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      lightbox.classList.remove('active');
-    }
-  });
-}
-
-// DOM yüklendiğinde lightbox'ı başlat
-document.addEventListener('DOMContentLoaded', initLightbox);
