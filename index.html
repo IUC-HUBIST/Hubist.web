@@ -26,7 +26,7 @@
   <!-- Sayaç Bölümü -->
   <section class="countdown">
     <h2>Bir Sonraki Yarışmaya Kalan Süre</h2>
-    <p id="timer"></p>
+    <p id="timer">Yükleniyor...</p>
   </section>
 
   <!-- Hero Bölümü -->
@@ -42,6 +42,7 @@
     <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
   </section>
 
+  <!-- YENİ YARİŞMALAR BÖLÜMÜ (GÜNCELLENMİŞ) -->
   <section class="content" id="yarisma">
     <h2>Yarışmalar</h2>
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
@@ -54,8 +55,14 @@
           <div class="timeline-cursor" id="timeline-cursor"></div>
         </div>
         <div class="race-markers">
-          <div class="marker active" data-date="2025-07-28">RoboLig<br>28 Temmuz 2025</div>
-          <div class="marker" data-date="2025-08-22">Diğer Yarışma<br>22 Ağustos 2025</div>
+          <div class="marker active" data-date="2025-07-28">
+            <span class="race-name">RoboLig</span>
+            <span class="race-date">28 Temmuz 2025</span>
+          </div>
+          <div class="marker" data-date="2025-08-22">
+            <span class="race-name">Diğer Yarışma</span>
+            <span class="race-date">22 Ağustos 2025</span>
+          </div>
         </div>
       </div>
     </div>
@@ -69,54 +76,44 @@
   <script>
     // GELİŞMİŞ SAYAÇ ve ZAMAN ÇİZGİSİ KODU
     document.addEventListener('DOMContentLoaded', function() {
-      // Yarışma tarihleri
-      const races = [
-        { name: "RoboLig", date: new Date("2025-07-28") },
-        { name: "Diğer Yarışma", date: new Date("2025-08-22") }
-      ];
-
-      // Zaman çizgisi güncelleme
-      function updateTimeline() {
-        const now = new Date();
-        const startDate = races[0].date;
-        const endDate = races[1].date;
-        const totalDuration = endDate - startDate;
-        const elapsed = now - startDate;
-        
-        let progressPercent = (elapsed / totalDuration) * 100;
-        progressPercent = Math.min(Math.max(progressPercent, 0), 100);
-
-        document.getElementById('timeline-progress').style.width = `${progressPercent}%`;
-        document.getElementById('timeline-cursor').style.left = `${progressPercent}%`;
-        
-        // Aktif yarışmayı vurgula
-        document.querySelectorAll('.marker').forEach((marker, index) => {
-          marker.classList.toggle('active', index === (progressPercent >= 100 ? 1 : 0));
-        });
-      }
-
-      // Sayaç güncelleme
+      // 1. SAYAÇ FONKSİYONU
       function updateCountdown() {
-        const now = new Date();
-        const nextRace = races.find(race => race.date > now) || races[0];
-        const timeLeft = nextRace.date - now;
-
-        if (timeLeft <= 0) {
-          document.getElementById("timer").innerText = `${nextRace.name} başladı!`;
-          return;
-        }
+        const targetDate = new Date('2025-07-28').getTime();
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
 
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         
-        document.getElementById("timer").innerText = 
-          `${nextRace.name}: ${days}g ${hours}s kaldı`;
+        document.getElementById("timer").innerHTML = 
+          `${days}<small>gün</small> ${hours}<small>saat</small> ${minutes}<small>dakika</small>`;
       }
 
-      updateTimeline();
+      // 2. ZAMAN ÇİZGİSİ FONKSİYONU
+      function updateTimeline() {
+        const startDate = new Date('2025-07-28').getTime();
+        const endDate = new Date('2025-08-22').getTime();
+        const now = new Date().getTime();
+        
+        const progress = Math.min(((now - startDate) / (endDate - startDate)) * 100, 100);
+        
+        document.getElementById('timeline-progress').style.width = progress + '%';
+        document.getElementById('timeline-cursor').style.left = progress + '%';
+        
+        // Aktif yarışmayı güncelle
+        document.querySelectorAll('.marker').forEach(marker => {
+          marker.classList.toggle('active', marker.dataset.date === (progress < 100 ? '2025-07-28' : '2025-08-22'));
+        });
+      }
+
+      // İlk çalıştırma
       updateCountdown();
-      setInterval(updateTimeline, 3600000); // Saatlik güncelleme
-      setInterval(updateCountdown, 1000); // Saniyelik güncelleme
+      updateTimeline();
+      
+      // Her dakika güncelle
+      setInterval(updateCountdown, 60000);
+      setInterval(updateTimeline, 60000);
     });
   </script>
 </body>
