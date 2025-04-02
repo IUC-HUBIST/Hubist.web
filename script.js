@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const progress = ((now - yearStart) / (yearEnd - yearStart)) * 100;
 
         race.elements.progress.style.width = `${Math.min(progress, 100)}%`;
-        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s 
+        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
 
         if (daysLeft < minDaysLeft) {
           minDaysLeft = daysLeft;
