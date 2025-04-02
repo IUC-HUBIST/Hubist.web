@@ -24,12 +24,6 @@
     </nav>
   </header>
 
-  <!-- Sayaç Bölümü -->
-  <section class="countdown">
-    <h2>Bir Sonraki Yarışmaya Kalan Süre</h2>
-    <p id="timer">Yükleniyor...</p>
-  </section>
-
   <!-- Hero Bölümü -->
   <section class="hero" id="anasayfa">
     <div class="hero-content">
@@ -52,7 +46,7 @@
     <div class="race-container">
       <div class="race-item">
         <div class="race-header">
-          <h3>ROBOLIG</h3>
+          <h3>ROBOLİG</h3>
           <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
         </div>
         <div class="progress-container">
@@ -65,7 +59,7 @@
 
       <div class="race-item">
         <div class="race-header">
-          <h3>SAVASAH IHA</h3>
+          <h3>SAVAŞAN İHA</h3>
           <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
         </div>
         <div class="progress-container">
@@ -87,7 +81,7 @@
         <div class="card-preview">
           <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy" style="object-position: center 30%;">
           <h3>2024 Teknofest RoboLig</h3>
-          <button class="expand-btn">+ Detay Göster</button>
+          <button class="details-btn">Detayları Göster</button>
         </div>
         <div class="card-details">
           <div class="card-content">
@@ -101,12 +95,11 @@
             </div>
             <div class="competition-info">
               <h4>Yarışma Detayları</h4>
-              <p><strong>Tarih:</strong> DD/MM/YYYY</p>
+              <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
               <p><strong>Yer:</strong> İstanbul</p>
               <p><strong>Takım Üyeleri:</strong> [Düzenlenecek]</p>
             </div>
           </div>
-          <button class="collapse-btn">× Kapat</button>
         </div>
       </div>
     </div>
@@ -117,85 +110,6 @@
     <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
   </section>
 
-  <script>
-    // Gelişmiş Sayaç Sistemi
-    document.addEventListener('DOMContentLoaded', function() {
-      // Yarışma verileri
-      const races = [
-        {
-          id: "robolig",
-          date: new Date("2025-07-28T00:00:00"),
-          elements: {
-            progress: document.getElementById("robolig-progress"),
-            days: document.getElementById("robolig-days"),
-            countdown: document.getElementById("robolig-countdown")
-          }
-        },
-        {
-          id: "savasah",
-          date: new Date("2025-08-22T00:00:00"),
-          elements: {
-            progress: document.getElementById("savasah-progress"),
-            days: document.getElementById("savasah-days"),
-            countdown: document.getElementById("savasah-countdown")
-          }
-        }
-      ];
-
-      // Ana sayaç elementleri
-      const mainTimer = document.getElementById("timer");
-
-      function updateAll() {
-        const now = new Date();
-        
-        races.forEach(race => {
-          const timeLeft = race.date - now;
-          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          
-          // Progress hesaplama
-          const startDate = new Date(race.date.getFullYear(), 0, 1);
-          const progress = Math.min(
-            ((now - startDate) / (race.date - startDate)) * 100, 
-            100
-          );
-
-          // Element güncellemeleri
-          if(race.elements.progress) {
-            race.elements.progress.style.width = `${progress}%`;
-            race.elements.days.textContent = `Son ${days} gün`;
-            race.elements.countdown.textContent = `${days}g ${hours}s`;
-          }
-        });
-
-        // Ana sayaç güncelleme
-        if(mainTimer) {
-          const mainDate = new Date("2025-07-28");
-          const mainDays = Math.floor((mainDate - now) / (1000 * 60 * 60 * 24));
-          const mainHours = Math.floor(((mainDate - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          mainTimer.innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
-        }
-      }
-
-      // Kart aç/kapa fonksiyonları
-      document.querySelectorAll('.expand-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.competition-card');
-          card.querySelector('.card-details').classList.add('active');
-        });
-      });
-
-      document.querySelectorAll('.collapse-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.competition-card');
-          card.querySelector('.card-details').classList.remove('active');
-        });
-      });
-
-      // İlk çalıştırma ve güncelleme aralığı
-      updateAll();
-      setInterval(updateAll, 60000); // 1 dakikada bir güncelle
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
