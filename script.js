@@ -149,9 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 60000);
   }
-});
-// Daktilo efekti için
-function initTyped() {
+
+  // Daktilo efekti için (GÜNCELLENMİŞ VERSİYON)
   const roboligBox = document.getElementById("robolig-box");
   const savasanBox = document.getElementById("savasaniha-box");
   
@@ -167,31 +166,52 @@ function initTyped() {
     const roboligText = "RoboLig, Türkiye'nin en prestijli robotik yarışmasıdır. Otonom robotların görevleri tamamlaması üzerine kurulu bir ligdir.";
     const savasanText = "Savaşan İHA, insansız hava araçlarının simüle edilmiş savaş senaryolarında yarıştığı bir teknoloji yarışmasıdır.";
 
+    // Typed.js örneklerini saklamak için
+    let roboligTyped, savasanTyped;
+
     roboligBox.addEventListener("mouseenter", () => {
-      new Typed(roboligDesc, {
+      // Önceki animasyonu temizle
+      if (roboligTyped) roboligTyped.destroy();
+      
+      roboligTyped = new Typed(roboligDesc, {
         strings: [roboligText],
         typeSpeed: 30,
-        showCursor: false
+        showCursor: false,
+        onComplete: () => {
+          // Yazı tamamlandığında imleci gizle
+          const cursor = roboligDesc.querySelector(".typed-cursor");
+          if (cursor) cursor.style.display = "none";
+        }
       });
     });
 
     roboligBox.addEventListener("mouseleave", () => {
-      roboligDesc.innerHTML = "";
+      // Yazıyı temizle ve animasyonu durdur
+      if (roboligTyped) {
+        roboligTyped.destroy();
+        roboligDesc.innerHTML = "";
+      }
     });
 
     savasanBox.addEventListener("mouseenter", () => {
-      new Typed(savasanDesc, {
+      if (savasanTyped) savasanTyped.destroy();
+      
+      savasanTyped = new Typed(savasanDesc, {
         strings: [savasanText],
         typeSpeed: 30,
-        showCursor: false
+        showCursor: false,
+        onComplete: () => {
+          const cursor = savasanDesc.querySelector(".typed-cursor");
+          if (cursor) cursor.style.display = "none";
+        }
       });
     });
 
     savasanBox.addEventListener("mouseleave", () => {
-      savasanDesc.innerHTML = "";
+      if (savasanTyped) {
+        savasanTyped.destroy();
+        savasanDesc.innerHTML = "";
+      }
     });
   }
-}
-
-// Sayfa yüklendiğinde çalıştır
-document.addEventListener("DOMContentLoaded", initTyped);
+});
