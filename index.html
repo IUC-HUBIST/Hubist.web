@@ -1,239 +1,241 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUBİST - Anasayfa</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUBİST - Robotik ve Teknoloji Takımı</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="HUBİST - İstanbul Üniversitesi-Cerrahpaşa Robotik ve Teknoloji Takımı">
+    <meta name="keywords" content="robotik, teknofest, ihs, savunma sanayi">
 </head>
 <body>
-  <!-- Header ve Navigasyon -->
-  <header>
-    <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#anasayfa">Anasayfa</a></li>
-        <li><a href="#biz-kimiz">Biz Kimiz</a></li>
-        <li><a href="#yarisma">Yarışmalar</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Sayaç Bölümü -->
-  <section class="countdown">
-    <h2>Bir Sonraki Yarışmaya Kalan Süre</h2>
-    <p id="timer">Yükleniyor...</p>
-  </section>
-
-  <!-- Hero Bölümü -->
-  <section class="hero" id="anasayfa">
-    <div class="hero-content">
-      <h1>HUBİST - Teknoloji ve İnovasyon</h1>
-      <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
-    </div>
-  </section>
-
-  <section class="content" id="biz-kimiz">
-    <h2>Biz Kimiz?</h2>
-    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
-  </section>
-
-  <!-- Yarışmalar Bölümü -->
-  <section class="content" id="yarisma">
-    <h2>Yarışmalar</h2>
-    <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
-    
-    <div class="race-container">
-      <div class="race-item">
-        <div class="race-header">
-          <h3>ROBOLIG</h3>
-          <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="robolig-progress">
-            <div class="progress-cursor"></div>
-          </div>
-        </div>
-        <div class="time-left" id="robolig-days"></div>
-      </div>
-
-      <div class="race-item">
-        <div class="race-header">
-          <h3>SAVASAH IHA</h3>
-          <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="savasah-progress">
-            <div class="progress-cursor"></div>
-          </div>
-        </div>
-        <div class="time-left" id="savasah-days"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2024 RoboLig Yarışması Bölümü -->
-  <section class="content" id="past-competitions">
-    <h2>2024 RoboLig Yarışması</h2>
-    
-    <div class="competition-gallery">
-      <div class="competition-card">
-        <div class="card-preview">
-          <img src="images/competitions/robolig-2024.jpg" alt="2024 RoboLig" loading="lazy">
-          <div class="card-preview-content">
-            <h3>Teknofest RoboLig 2024</h3>
-            <div class="achievement-badge">
-              <i class="fas fa-trophy"></i>
-              <span>4.lük Ödülü</span>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="HUBİST Logosu" width="180">
+                </a>
             </div>
-            <button class="expand-btn">Detayları Gör <i class="fas fa-chevron-down"></i></button>
-          </div>
-        </div>
-        <div class="card-details">
-          <div class="card-content">
-            <h4>Başarı Hikayemiz</h4>
-            <p>HUBİST ekibi olarak 2024 Teknofest RoboLig yarışmasında 150 takım arasından sıyrılarak 4.lük ödülünü kazandık. Robotumuzun özgün tasarımı ve yenilikçi algoritmaları jüri tarafından özellikle takdir edildi.</p>
             
-            <h4>Yarışma Detayları</h4>
-            <ul class="competition-info">
-              <li><i class="far fa-calendar-alt"></i> <strong>Tarih:</strong> 15-17 Mart 2024</li>
-              <li><i class="fas fa-map-marker-alt"></i> <strong>Yer:</strong> İstanbul Havacılık Müzesi</li>
-              <li><i class="fas fa-users"></i> <strong>Takım Üyeleri:</strong> 6 kişi</li>
-            </ul>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Anasayfa</a></li>
+                    <li><a href="#about"><i class="fas fa-users"></i> Takım</a></li>
+                    <li><a href="#competitions"><i class="fas fa-trophy"></i> Yarışmalar</a></li>
+                    <li><a href="#projects"><i class="fas fa-robot"></i> Projeler</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> İletişim</a></li>
+                </ul>
+            </nav>
             
-            <div class="competition-photos">
-              <div class="photo-item">
-                <img src="images/competitions/robolig-1.jpg" alt="Robot Performansı" loading="lazy">
-                <p>Robotumuz görev alanında</p>
-              </div>
-              <div class="photo-item">
-                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
-                <p>Ödül töreni anı</p>
-              </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
-          </div>
-          <button class="collapse-btn">Kapat <i class="fas fa-times"></i></button>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="content" id="iletisim">
-    <h2>İletişim</h2>
-    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
-  </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Teknolojiye Yön Veriyoruz</h1>
+            <p>2024 RoboLig Yarışması 4.lük Ödülü Sahibi</p>
+            <a href="#competitions" class="btn">Yarışmaları Gör <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
 
-  <!-- Yeni Footer -->
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="HUBİST Logo" class="footer-logo">
-        <p>Teknoloji ve İnovasyonda Lider Ekip</p>
-      </div>
-      
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Hızlı Linkler</h4>
-          <ul>
-            <li><a href="#anasayfa">Anasayfa</a></li>
-            <li><a href="#yarisma">Yarışmalar</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
-          </ul>
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2>Sonraki Yarışmaya Kalan Süre</h2>
+            <div id="countdown-timer">
+                <span id="days">00</span> Gün 
+                <span id="hours">00</span> Saat 
+                <span id="minutes">00</span> Dakika
+            </div>
         </div>
-        
-        <div class="footer-section">
-          <h4>Sosyal Medya</h4>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-          </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">HUBİST Kimdir?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>İstanbul Üniversitesi-Cerrahpaşa bünyesinde faaliyet gösteren HUBİST, robotik ve yapay zeka alanlarında projeler geliştiren bir öğrenci topluluğudur.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check-circle"></i> 20+ Aktif Üye</li>
+                        <li><i class="fas fa-check-circle"></i> 5+ Tamamlanan Proje</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Farklı Disiplin</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="assets/images/team.jpg" alt="HUBIST Takım Fotoğrafı">
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="competitions" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">2024 RoboLig Yarışması</h2>
+            
+            <div class="competition-gallery">
+                <!-- Competition Card 1 -->
+                <div class="competition-card">
+                    <div class="card-preview">
+                        <img src="assets/images/competitions/robolig-2024.jpg" alt="2024 RoboLig" loading="lazy">
+                        <div class="card-preview-content">
+                            <h3>Teknofest RoboLig 2024</h3>
+                            <div class="achievement-badge">
+                                <i class="fas fa-trophy"></i>
+                                <span>4.lük Ödülü</span>
+                            </div>
+                            <button class="expand-btn">Detayları Gör <i class="fas fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-details">
+                        <div class="card-content">
+                            <h4>Başarı Hikayemiz</h4>
+                            <p>150 takım arasından sıyrılarak 4.lük ödülünü kazandık. Robotumuzun özgün tasarımı ve yenilikçi algoritmaları jüri tarafından özellikle takdir edildi.</p>
+                            
+                            <div class="competition-info">
+                                <ul>
+                                    <li><i class="far fa-calendar-alt"></i> <strong>Tarih:</strong> 15-17 Mart 2024</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> <strong>Yer:</strong> İstanbul Havacılık Müzesi</li>
+                                    <li><i class="fas fa-users"></i> <strong>Takım Üyeleri:</strong> 6 kişi</li>
+                                    <li><i class="fas fa-clock"></i> <strong>Hazırlık Süresi:</strong> 8 ay</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="competition-photos">
+                                <div class="photo-item">
+                                    <img src="assets/images/competitions/robolig-1.jpg" alt="Robot Performansı">
+                                    <p>Robotumuz görev alanında</p>
+                                </div>
+                                <div class="photo-item">
+                                    <img src="assets/images/competitions/robolig-2.jpg" alt="Ödül Töreni">
+                                    <p>Ödül töreni anı</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="collapse-btn">Kapat <i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Diğer yarışma kartları buraya eklenebilir -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projelerimiz</h2>
+            <!-- Projeler buraya eklenecek -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@hubist.com</li>
+                        <li><i class="fas fa-phone"></i> +90 555 123 45 67</li>
+                        <li><i class="fas fa-map-marker-alt"></i> İstanbul Üniversitesi-Cerrahpaşa, Avcılar Kampüsü</li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Adınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="E-posta" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mesajınız" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Gönder <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo-white.png" alt="HUBİST Logo" width="150">
+                    <p>Teknoloji ve İnovasyonda Öncü</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Hızlı Linkler</h4>
+                        <ul>
+                            <li><a href="#home">Anasayfa</a></li>
+                            <li><a href="#about">Hakkımızda</a></li>
+                            <li><a href="#competitions">Yarışmalar</a></li>
+                            <li><a href="#projects">Projeler</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Kaynaklar</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Dokümantasyon</a></li>
+                            <li><a href="#">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 HUBİST. Tüm hakları saklıdır. <span id="current-year"></span></p>
+                <p>Bu site HUBİST ekibi tarafından geliştirilmiştir.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
     
-    <div class="footer-bottom">
-      <p>&copy; 2024 HUBİST. Tüm hakları saklıdır. Bu site HUBİST ekibi tarafından geliştirilmiştir.</p>
-      <p><a href="https://github.com/IUC-HUBIST/Hubist.web" target="_blank">GitHub Repo</a> | <a href="#">Gizlilik Politikası</a></p>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Yarışma verileri
-      const races = [
-        {
-          id: "robolig",
-          date: new Date("2025-07-28T00:00:00"),
-          elements: {
-            progress: document.getElementById("robolig-progress"),
-            days: document.getElementById("robolig-days"),
-            countdown: document.getElementById("robolig-countdown")
-          }
-        },
-        {
-          id: "savasah",
-          date: new Date("2025-08-22T00:00:00"),
-          elements: {
-            progress: document.getElementById("savasah-progress"),
-            days: document.getElementById("savasah-days"),
-            countdown: document.getElementById("savasah-countdown")
-          }
-        }
-      ];
-
-      // Ana sayaç güncelleme
-      function updateAll() {
-        const now = new Date();
+    <script>
+        // Current Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
         
-        races.forEach(race => {
-          const timeLeft = race.date - now;
-          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          
-          const startDate = new Date(race.date.getFullYear(), 0, 1);
-          const progress = Math.min(((now - startDate) / (race.date - startDate)) * 100, 100);
-
-          if(race.elements.progress) {
-            race.elements.progress.style.width = `${progress}%`;
-            race.elements.days.textContent = `Son ${days} gün`;
-            race.elements.countdown.textContent = `${days}g ${hours}s`;
-          }
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
         });
-
-        if(document.getElementById("timer")) {
-          const mainDate = new Date("2025-07-28");
-          const mainDays = Math.floor((mainDate - now) / (1000 * 60 * 60 * 24));
-          const mainHours = Math.floor(((mainDate - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          document.getElementById("timer").innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
-        }
-      }
-
-      // Kart aç/kapa fonksiyonları
-      document.querySelectorAll('.expand-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.competition-card');
-          card.querySelector('.card-details').classList.add('active');
-        });
-      });
-
-      document.querySelectorAll('.collapse-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.competition-card');
-          card.querySelector('.card-details').classList.remove('active');
-        });
-      });
-
-      updateAll();
-      setInterval(updateAll, 60000);
-    });
-  </script>
+    </script>
 </body>
 </html>
