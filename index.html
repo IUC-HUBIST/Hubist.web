@@ -80,10 +80,22 @@
             <h4>4.lük Ödülü</h4>
             <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
             <div class="competition-photos">
-              <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
-              <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
-              <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
-              <img src="images/competitions/robolig-4.jpg" alt="Robot Detayı" loading="lazy">
+              <img src="images/competitions/robolig-1.jpg" 
+                   alt="Takımımız yarışma alanında çalışırken" 
+                   loading="lazy" 
+                   class="zoomable">
+              <img src="images/competitions/robolig-2.jpg" 
+                   alt="Ödül töreninde takım üyelerimiz" 
+                   loading="lazy" 
+                   class="zoomable">
+              <img src="images/competitions/robolig-3.jpg" 
+                   alt="Robotumuzun teknik çalışması" 
+                   loading="lazy" 
+                   class="zoomable">
+              <img src="images/competitions/robolig-4.jpg" 
+                   alt="Yarışma alanında robot performansı" 
+                   loading="lazy" 
+                   class="zoomable">
             </div>
             <div class="competition-info">
               <h4>Yarışma Detayları</h4>
@@ -101,6 +113,15 @@
     <h2>İletişim</h2>
     <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
   </section>
+
+  <!-- Lightbox HTML'i -->
+  <div id="lightbox">
+    <div class="lightbox-content">
+      <span class="close-btn">&times;</span>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
