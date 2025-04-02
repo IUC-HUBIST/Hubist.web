@@ -81,5 +81,7 @@ function updateAll() {
 
     // İlk çalıştırma ve güncelleme aralığı
     updateAll();
+    // script.js içinde updateAll() fonksiyonuna bu satırı ekleyin:
+comp.element.countdownElement.setAttribute('title', `${hours} saat ${minutes} dakika`);
     setInterval(updateAll, 60000); // 1 dakikada bir güncelle
 });
