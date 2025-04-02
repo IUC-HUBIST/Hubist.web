@@ -150,3 +150,48 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateCountdown, 60000);
   }
 });
+// Daktilo efekti için
+function initTyped() {
+  const roboligBox = document.getElementById("robolig-box");
+  const savasanBox = document.getElementById("savasaniha-box");
+  
+  if (roboligBox && savasanBox) {
+    const roboligDesc = document.createElement("div");
+    roboligDesc.className = "race-description";
+    roboligBox.appendChild(roboligDesc);
+
+    const savasanDesc = document.createElement("div");
+    savasanDesc.className = "race-description";
+    savasanBox.appendChild(savasanDesc);
+
+    const roboligText = "RoboLig, Türkiye'nin en prestijli robotik yarışmasıdır. Otonom robotların görevleri tamamlaması üzerine kurulu bir ligdir.";
+    const savasanText = "Savaşan İHA, insansız hava araçlarının simüle edilmiş savaş senaryolarında yarıştığı bir teknoloji yarışmasıdır.";
+
+    roboligBox.addEventListener("mouseenter", () => {
+      new Typed(roboligDesc, {
+        strings: [roboligText],
+        typeSpeed: 30,
+        showCursor: false
+      });
+    });
+
+    roboligBox.addEventListener("mouseleave", () => {
+      roboligDesc.innerHTML = "";
+    });
+
+    savasanBox.addEventListener("mouseenter", () => {
+      new Typed(savasanDesc, {
+        strings: [savasanText],
+        typeSpeed: 30,
+        showCursor: false
+      });
+    });
+
+    savasanBox.addEventListener("mouseleave", () => {
+      savasanDesc.innerHTML = "";
+    });
+  }
+}
+
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener("DOMContentLoaded", initTyped);
