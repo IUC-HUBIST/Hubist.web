@@ -218,7 +218,7 @@ nav ul li a:hover {
   font-size: 0.9rem;
 }
 
-/* Zaman Çizgisi İyileştirmeleri */
+/* Zaman Çizgisi Stilleri */
 .timeline-container {
   max-width: 800px;
   margin: 0 auto;
@@ -251,6 +251,60 @@ nav ul li a:hover {
   box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
   z-index: 10;
   transition: left 0.5s ease-in-out;
+}
+
+/* Marker Stilleri */
+.marker {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  padding-top: 35px;
+}
+
+.marker::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #bdc3c7;
+  transition: all 0.3s ease;
+}
+
+.marker.active {
+  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+.marker.active::before {
+  background: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.3);
+}
+
+.marker.past {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.marker.past::before {
+  background: #95a5a6 !important;
+  box-shadow: none !important;
+}
+
+.race-name {
+  display: block;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.race-date {
+  display: block;
+  font-size: 0.9em;
+  color: #7f8c8d;
 }
 
 /* Animasyonlar */
@@ -303,5 +357,13 @@ nav ul li a:hover {
 
   .timeline-bar {
     margin: 20px 0;
+  }
+
+  .marker {
+    padding-top: 25px;
+  }
+  
+  .marker::before {
+    top: -15px;
   }
 }
