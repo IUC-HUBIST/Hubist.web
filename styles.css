@@ -147,16 +147,78 @@ nav ul li a:hover {
   color: var(--secondary-color);
 }
 
-/* Zaman Çizgisi Düzeltmeleri */
-.race-timeline {
-  margin: 40px 0;
-  padding: 25px;
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  position: relative;
+/* Yeni Yarışma Timer Stilleri */
+.race-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
+.race-item {
+  margin-bottom: 2rem;
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.race-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.race-header h3 {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.countdown {
+  background: var(--secondary-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.progress-container {
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--secondary-color), var(--highlight-color));
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.progress-cursor {
+  width: 16px;
+  height: 16px;
+  background: var(--white);
+  border: 2px solid var(--secondary-color);
+  border-radius: 50%;
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.time-left {
+  text-align: right;
+  margin-top: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* Zaman Çizgisi İyileştirmeleri */
 .timeline-container {
   max-width: 800px;
   margin: 0 auto;
@@ -168,12 +230,11 @@ nav ul li a:hover {
   border-radius: 4px;
   position: relative;
   margin: 30px 0;
-  overflow: visible;
 }
 
 .timeline-progress {
   height: 100%;
-  background: linear-gradient(90deg, #f39c12 0%, #27ae60 100%);
+  background: linear-gradient(90deg, var(--secondary-color), var(--highlight-color));
   width: 0;
   border-radius: 4px;
   transition: width 0.5s ease-in-out;
@@ -184,56 +245,12 @@ nav ul li a:hover {
   top: -6px;
   width: 20px;
   height: 20px;
-  background: #f39c12;
+  background: var(--secondary-color);
   border-radius: 50%;
   transform: translateX(-10px);
   box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
   z-index: 10;
   transition: left 0.5s ease-in-out;
-}
-
-.race-markers {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-}
-
-.marker {
-  position: relative;
-  flex: 1;
-  text-align: center;
-  padding-top: 35px;
-}
-
-.marker::before {
-  content: '';
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #bdc3c7;
-  transition: all 0.3s ease;
-}
-
-.marker.active::before {
-  background: #f39c12;
-  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.3);
-}
-
-.race-name {
-  display: block;
-  font-weight: 700;
-  color: var(--primary-color);
-  margin-bottom: 5px;
-}
-
-.race-date {
-  display: block;
-  font-size: 0.9em;
-  color: #7f8c8d;
 }
 
 /* Animasyonlar */
@@ -253,10 +270,6 @@ nav ul li a:hover {
   100% { transform: translateX(-10px) scale(1); }
 }
 
-.timeline-cursor {
-  animation: cursorPulse 1.5s infinite;
-}
-
 /* Responsive Tasarım */
 @media (max-width: 768px) {
   .hero h1 {
@@ -267,17 +280,28 @@ nav ul li a:hover {
     font-size: 1.2rem;
   }
 
-  .race-timeline {
-    margin: 20px 15px;
-    padding: 20px;
+  .content {
+    margin: 80px 15px;
+    padding: 30px 15px;
   }
 
-  .marker {
-    padding-top: 25px;
-    margin: 10px 0;
+  .race-container {
+    padding: 0.5rem;
   }
 
-  .marker::before {
-    top: -15px;
+  .race-item {
+    padding: 1rem;
+  }
+
+  .race-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .countdown {
+    padding: 0.3rem 0.8rem;
+  }
+
+  .timeline-bar {
+    margin: 20px 0;
   }
 }
