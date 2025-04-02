@@ -45,17 +45,20 @@
   <section class="content" id="yarisma">
     <h2>Yarışmalar</h2>
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
-  </section>
-
-  <!-- Çizgi ile Navigasyon İşareti ve Sayaç -->
-  <section class="content" id="line-progress">
-    <h2>Yarışmaya Kalan Zaman ve İlerleyen Navigasyon</h2>
-    <div id="progress-container">
-      <div id="progress-line">
-        <div id="progress-indicator"></div>
+    
+    <!-- YENİ ZAMAN ÇİZGİSİ -->
+    <div class="race-timeline">
+      <div class="timeline-container">
+        <div class="timeline-bar">
+          <div class="timeline-progress" id="timeline-progress"></div>
+          <div class="timeline-cursor" id="timeline-cursor"></div>
+        </div>
+        <div class="race-markers">
+          <div class="marker active" data-date="2025-07-28">RoboLig<br>28 Temmuz 2025</div>
+          <div class="marker" data-date="2025-08-22">Diğer Yarışma<br>22 Ağustos 2025</div>
+        </div>
       </div>
     </div>
-    <p id="days-left">Yarışmaya Son: <span id="remaining-days">0</span> gün kaldı</p>
   </section>
 
   <section class="content" id="iletisim">
@@ -64,40 +67,57 @@
   </section>
 
   <script>
-    // Sayaç Kodu
-    function startCountdown(targetDate) {
-      function updateTimer() {
-        const now = new Date().getTime();
-        const timeLeft = targetDate - now;
+    // GELİŞMİŞ SAYAÇ ve ZAMAN ÇİZGİSİ KODU
+    document.addEventListener('DOMContentLoaded', function() {
+      // Yarışma tarihleri
+      const races = [
+        { name: "RoboLig", date: new Date("2025-07-28") },
+        { name: "Diğer Yarışma", date: new Date("2025-08-22") }
+      ];
+
+      // Zaman çizgisi güncelleme
+      function updateTimeline() {
+        const now = new Date();
+        const startDate = races[0].date;
+        const endDate = races[1].date;
+        const totalDuration = endDate - startDate;
+        const elapsed = now - startDate;
+        
+        let progressPercent = (elapsed / totalDuration) * 100;
+        progressPercent = Math.min(Math.max(progressPercent, 0), 100);
+
+        document.getElementById('timeline-progress').style.width = `${progressPercent}%`;
+        document.getElementById('timeline-cursor').style.left = `${progressPercent}%`;
+        
+        // Aktif yarışmayı vurgula
+        document.querySelectorAll('.marker').forEach((marker, index) => {
+          marker.classList.toggle('active', index === (progressPercent >= 100 ? 1 : 0));
+        });
+      }
+
+      // Sayaç güncelleme
+      function updateCountdown() {
+        const now = new Date();
+        const nextRace = races.find(race => race.date > now) || races[0];
+        const timeLeft = nextRace.date - now;
 
         if (timeLeft <= 0) {
-          document.getElementById("timer").innerText = "Yarışma başladı!";
-          clearInterval(timerInterval);
+          document.getElementById("timer").innerText = `${nextRace.name} başladı!`;
           return;
         }
 
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        document.getElementById("timer").innerText = `${days}g ${hours}s ${minutes}dk ${seconds}sn`;
         
-        // Gün sayısını güncelle
-        document.getElementById("remaining-days").innerText = days;
-        
-        // Progress bar'ı güncelle
-        const progress = 100 - (timeLeft / (targetDate - now)) * 100;
-        document.getElementById("progress-indicator").style.width = `${progress}%`;
+        document.getElementById("timer").innerText = 
+          `${nextRace.name}: ${days}g ${hours}s kaldı`;
       }
 
-      updateTimer();
-      const timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    // Örnek: 1 Temmuz 2025 tarihinde yarışma var
-    const competitionDate = new Date("2025-07-01T00:00:00").getTime();
-    startCountdown(competitionDate);
+      updateTimeline();
+      updateCountdown();
+      setInterval(updateTimeline, 3600000); // Saatlik güncelleme
+      setInterval(updateCountdown, 1000); // Saniyelik güncelleme
+    });
   </script>
 </body>
 </html>
