@@ -85,3 +85,17 @@ function updateAll() {
 comp.element.countdownElement.setAttribute('title', `${hours} saat ${minutes} dakika`);
     setInterval(updateAll, 60000); // 1 dakikada bir güncelle
 });
+// EN SONA EKLEYİN
+document.querySelectorAll('.expand-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.competition-card');
+    card.querySelector('.card-details').classList.add('active');
+  });
+});
+
+document.querySelectorAll('.collapse-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.competition-card');
+    card.querySelector('.card-details').classList.remove('active');
+  });
+});
