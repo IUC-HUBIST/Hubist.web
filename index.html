@@ -4,8 +4,275 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HUBİST - Anasayfa</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="images/logo.png" type="image/png">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: #2c3e50;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .logo img {
+      height: 50px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 2rem;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: #3498db;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('images/hero-bg.jpg') center/cover;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+    
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Content Sections */
+    .content {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .content h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+    
+    /* Competition Gallery Styles */
+    .competition-gallery {
+      margin-top: 3rem;
+    }
+    
+    .competition-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      transition: transform 0.3s;
+    }
+    
+    .competition-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .card-preview {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .card-preview img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    
+    .card-preview h3 {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    
+    .details-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .details-btn:hover {
+      background-color: #2980b9;
+    }
+    
+    .card-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .card-details.active {
+      max-height: 2000px;
+      padding: 1.5rem;
+    }
+    
+    .competition-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .photo-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .photo-container:hover {
+      transform: scale(1.03);
+    }
+    
+    .competition-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    
+    .photo-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    
+    .photo-container:hover .photo-info {
+      transform: translateY(0);
+    }
+    
+    /* Lightbox Styles */
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    
+    #lightbox-img {
+      max-height: 80vh;
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+      }
+      
+      nav ul li {
+        margin-left: 1rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .competition-photos {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,6 +284,7 @@
         <li><a href="#anasayfa">Anasayfa</a></li>
         <li><a href="#biz-kimiz">Biz Kimiz</a></li>
         <li><a href="#yarisma">Yarışmalar</a></li>
+        <li><a href="#past-competitions">Katıldığımız Yarışmalar</a></li>
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
     </nav>
@@ -80,28 +348,57 @@
             <h4>4.lük Ödülü</h4>
             <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
             <div class="competition-photos">
-              <img src="images/competitions/robolig-1.jpg" 
-                   alt="Takımımız yarışma alanında çalışırken" 
-                   loading="lazy" 
-                   class="zoomable">
-              <img src="images/competitions/robolig-2.jpg" 
-                   alt="Ödül töreninde takım üyelerimiz" 
-                   loading="lazy" 
-                   class="zoomable">
-              <img src="images/competitions/robolig-3.jpg" 
-                   alt="Robotumuzun teknik çalışması" 
-                   loading="lazy" 
-                   class="zoomable">
-              <img src="images/competitions/robolig-4.jpg" 
-                   alt="Yarışma alanında robot performansı" 
-                   loading="lazy" 
-                   class="zoomable">
+              <div class="photo-container">
+                <img src="images/competitions/robolig-1.jpg" 
+                     alt="Takımımız yarışma alanında çalışırken" 
+                     loading="lazy"
+                     class="competition-photo">
+                <div class="photo-info">
+                  <p><strong>Yer:</strong> İstanbul</p>
+                  <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                  <p><strong>Üyeler:</strong> Ahmet, Mehmet, Ayşe</p>
+                </div>
+              </div>
+              <div class="photo-container">
+                <img src="images/competitions/robolig-2.jpg" 
+                     alt="Ödül töreninde takım üyelerimiz" 
+                     loading="lazy"
+                     class="competition-photo">
+                <div class="photo-info">
+                  <p><strong>Yer:</strong> İstanbul</p>
+                  <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                  <p><strong>Üyeler:</strong> Ahmet, Mehmet, Ayşe</p>
+                </div>
+              </div>
+              <div class="photo-container">
+                <img src="images/competitions/robolig-3.jpg" 
+                     alt="Robotumuzun teknik çalışması" 
+                     loading="lazy"
+                     class="competition-photo">
+                <div class="photo-info">
+                  <p><strong>Yer:</strong> İstanbul</p>
+                  <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                  <p><strong>Üyeler:</strong> Ahmet, Mehmet, Ayşe</p>
+                </div>
+              </div>
+              <div class="photo-container">
+                <img src="images/competitions/robolig-4.jpg" 
+                     alt="Yarışma alanında robot performansı" 
+                     loading="lazy"
+                     class="competition-photo">
+                <div class="photo-info">
+                  <p><strong>Yer:</strong> İstanbul</p>
+                  <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                  <p><strong>Üyeler:</strong> Ahmet, Mehmet, Ayşe</p>
+                </div>
+              </div>
             </div>
             <div class="competition-info">
               <h4>Yarışma Detayları</h4>
               <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
               <p><strong>Yer:</strong> İstanbul</p>
-              <p><strong>Takım Üyeleri:</strong> [Takım Bilgileri]</p>
+              <p><strong>Takım Üyeleri:</strong> Ahmet, Mehmet, Ayşe</p>
+              <p><strong>Başarı:</strong> 4.lük Ödülü</p>
             </div>
           </div>
         </div>
@@ -123,6 +420,42 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Detayları Göster/Gizle Butonu
+    document.querySelector('.details-btn').addEventListener('click', function() {
+      const detailsSection = document.querySelector('.card-details');
+      detailsSection.classList.toggle('active');
+      
+      // Buton metnini değiştir
+      this.textContent = detailsSection.classList.contains('active') 
+        ? 'Detayları Gizle' 
+        : 'Detayları Göster';
+    });
+    
+    // Fotoğraf büyütme (Lightbox)
+    const photos = document.querySelectorAll('.competition-photo');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.close-btn');
+    
+    photos.forEach(photo => {
+      photo.addEventListener('click', () => {
+        lightboxImg.src = photo.src;
+        lightboxCaption.textContent = photo.alt;
+        lightbox.classList.add('active');
+      });
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
