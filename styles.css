@@ -252,12 +252,13 @@ nav ul li a:hover {
   height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: zoom-in;
 }
 
 .competition-photos img:hover {
-  transform: scale(1.1);
-  z-index: 10;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .competition-info {
@@ -266,6 +267,44 @@ nav ul li a:hover {
   border-radius: 8px;
   margin-top: 20px;
   text-align: left;
+}
+
+.competition-info h4 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.competition-info p {
+  margin-bottom: 8px;
+}
+
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 2px solid #f39c12;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
 @media (max-width: 768px) {
@@ -303,50 +342,9 @@ nav ul li a:hover {
   .competition-photos {
     grid-template-columns: 1fr;
   }
-}
-/* Lightbox Stilleri */
-#lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-#lightbox.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-}
-
-#lightbox.active img {
-  transform: scale(1);
-}
-
-/* Resim hover efektleri */
-.competition-photos img {
-  cursor: zoom-in;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.competition-photos img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 10;
+  
+  .card-preview img,
+  .competition-photos img {
+    height: 200px;
+  }
 }
