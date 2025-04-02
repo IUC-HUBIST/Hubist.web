@@ -6,7 +6,6 @@
   --white: #ffffff;
   --text-color: #333;
   --header-height: 80px;
-  --cursor-color: #f39c12;
   --highlight-color: #27ae60;
   --card-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -22,7 +21,6 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   scroll-behavior: smooth;
-  cursor: url('images/cursor.png'), auto;
   padding-top: var(--header-height);
 }
 
@@ -133,22 +131,6 @@ nav ul li a:hover {
   background-color: #eef2f7;
 }
 
-/* Sayaç Bölümü */
-.countdown {
-  text-align: center;
-  padding: 30px;
-  background-color: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-}
-
-#timer {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--secondary-color);
-}
-
 /* Yarışma Timer Stilleri */
 .race-container {
   max-width: 800px;
@@ -163,10 +145,6 @@ nav ul li a:hover {
   border-radius: 10px;
   box-shadow: var(--card-shadow);
   position: relative;
-}
-
-.race-item:first-child {
-  border-left: 3px solid var(--secondary-color);
 }
 
 .race-header {
@@ -266,16 +244,16 @@ nav ul li a:hover {
 .card-details {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 20px;
 }
 
 .card-details.active {
-  max-height: 1500px;
+  max-height: 2000px;
   padding: 20px;
 }
 
-.expand-btn, .collapse-btn {
+.details-btn {
   background: var(--secondary-color);
   color: white;
   border: none;
@@ -287,21 +265,9 @@ nav ul li a:hover {
   font-weight: bold;
 }
 
-.expand-btn:hover {
+.details-btn:hover {
   background: #e67e22;
   transform: translateY(-3px);
-}
-
-.collapse-btn {
-  display: block;
-  width: 100%;
-  border-radius: 0;
-  background: #e74c3c;
-  margin-top: 20px;
-}
-
-.collapse-btn:hover {
-  background: #c0392b;
 }
 
 .competition-photos {
@@ -316,11 +282,14 @@ nav ul li a:hover {
   height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .competition-photos img:hover {
-  transform: scale(1.03);
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 10;
 }
 
 .competition-info {
@@ -357,6 +326,24 @@ nav ul li a:hover {
 
 /* Responsive Tasarım */
 @media (max-width: 768px) {
+  header {
+    padding: 0 15px;
+    height: 70px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
+
+  nav ul li a {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
   .hero h1 {
     font-size: 2.5rem;
   }
@@ -398,27 +385,13 @@ nav ul li a:hover {
   .competition-photos img {
     height: 150px;
   }
+
+  .competition-photos img:hover {
+    transform: scale(1.05);
+  }
 }
 
 @media (max-width: 480px) {
-  header {
-    padding: 0 15px;
-    height: 70px;
-  }
-
-  .logo img {
-    height: 50px;
-  }
-
-  nav ul {
-    gap: 10px;
-  }
-
-  nav ul li a {
-    padding: 8px 10px;
-    font-size: 0.9rem;
-  }
-
   .hero h1 {
     font-size: 2rem;
   }
