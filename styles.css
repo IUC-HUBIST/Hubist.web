@@ -346,6 +346,11 @@ nav ul li a:hover {
   .race-item {
     padding: 1rem;
   }
+  /* styles.css'te .race-item stillerinin altına ekleyin */
+.race-item:first-child {
+  border-left: 3px solid var(--secondary-color);
+  padding-left: 15px; /* Kenar çizgisi için boşluk */
+}
 
   .race-header h3 {
     font-size: 1.1rem;
