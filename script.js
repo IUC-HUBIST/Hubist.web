@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Element güncellemeleri
             comp.element.progress.style.width = `${progress}%`;
+            // script.js'de updateAll() fonksiyonu içine ekleyin
+function updateAll() {
+  // ... mevcut kodlar ...
+  
+  races.forEach(comp => {
+    // ... mevcut hesaplamalar ...
+    
+    // Tooltip ekleme (yeni satır)
+    comp.element.countdownElement.title = `${hours} saat ${minutes} dakika`;
+  });
+}
             comp.element.days.textContent = `Son ${days} gün`;
             comp.element.countdown.textContent = `${days}g ${hours}s`;
             
