@@ -6,7 +6,6 @@
   <title>HUBİST - Anasayfa</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <!-- Header ve Navigasyon -->
@@ -49,6 +48,7 @@
     <h2>Yarışmalar</h2>
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
     
+    <!-- Yarışma Timer -->
     <div class="race-container">
       <div class="race-item">
         <div class="race-header">
@@ -78,47 +78,27 @@
     </div>
   </section>
 
-  <!-- 2024 RoboLig Yarışması Bölümü -->
+  <!-- Katıldığımız Yarışmalar -->
   <section class="content" id="past-competitions">
-    <h2>2024 RoboLig Yarışması</h2>
+    <h2>Katıldığımız Yarışmalar</h2>
     
     <div class="competition-gallery">
       <div class="competition-card">
         <div class="card-preview">
-          <img src="images/competitions/robolig-2024.jpg" alt="2024 RoboLig" loading="lazy">
-          <div class="card-preview-content">
-            <h3>Teknofest RoboLig 2024</h3>
-            <div class="achievement-badge">
-              <i class="fas fa-trophy"></i>
-              <span>4.lük Ödülü</span>
-            </div>
-            <button class="expand-btn">Detayları Gör <i class="fas fa-chevron-down"></i></button>
-          </div>
+          <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy">
+          <h3>2024 Teknofest RoboLig</h3>
+          <button class="expand-btn">+ Detay Göster</button>
         </div>
         <div class="card-details">
           <div class="card-content">
-            <h4>Başarı Hikayemiz</h4>
-            <p>HUBİST ekibi olarak 2024 Teknofest RoboLig yarışmasında 150 takım arasından sıyrılarak 4.lük ödülünü kazandık. Robotumuzun özgün tasarımı ve yenilikçi algoritmaları jüri tarafından özellikle takdir edildi.</p>
-            
-            <h4>Yarışma Detayları</h4>
-            <ul class="competition-info">
-              <li><i class="far fa-calendar-alt"></i> <strong>Tarih:</strong> 15-17 Mart 2024</li>
-              <li><i class="fas fa-map-marker-alt"></i> <strong>Yer:</strong> İstanbul Havacılık Müzesi</li>
-              <li><i class="fas fa-users"></i> <strong>Takım Üyeleri:</strong> 6 kişi</li>
-            </ul>
-            
+            <h4>4.lük Ödülü</h4>
+            <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur. Bu başarımızı 2025 yılında daha ileriye taşımak ve 1. olabilmek için tüm gücümüzle hazırlanmaktayız.</p>
             <div class="competition-photos">
-              <div class="photo-item">
-                <img src="images/competitions/robolig-1.jpg" alt="Robot Performansı" loading="lazy">
-                <p>Robotumuz görev alanında</p>
-              </div>
-              <div class="photo-item">
-                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
-                <p>Ödül töreni anı</p>
-              </div>
+              <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
+              <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
             </div>
           </div>
-          <button class="collapse-btn">Kapat <i class="fas fa-times"></i></button>
+          <button class="collapse-btn">× Kapat</button>
         </div>
       </div>
     </div>
@@ -129,43 +109,8 @@
     <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
   </section>
 
-  <!-- Yeni Footer -->
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="HUBİST Logo" class="footer-logo">
-        <p>Teknoloji ve İnovasyonda Lider Ekip</p>
-      </div>
-      
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Hızlı Linkler</h4>
-          <ul>
-            <li><a href="#anasayfa">Anasayfa</a></li>
-            <li><a href="#yarisma">Yarışmalar</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Sosyal Medya</h4>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2024 HUBİST. Tüm hakları saklıdır. Bu site HUBİST ekibi tarafından geliştirilmiştir.</p>
-      <p><a href="https://github.com/IUC-HUBIST/Hubist.web" target="_blank">GitHub Repo</a> | <a href="#">Gizlilik Politikası</a></p>
-    </div>
-  </footer>
-
   <script>
+    // Gelişmiş Sayaç Sistemi
     document.addEventListener('DOMContentLoaded', function() {
       // Yarışma verileri
       const races = [
@@ -189,7 +134,9 @@
         }
       ];
 
-      // Ana sayaç güncelleme
+      // Ana sayaç elementleri
+      const mainTimer = document.getElementById("timer");
+
       function updateAll() {
         const now = new Date();
         
@@ -198,9 +145,14 @@
           const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
           const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           
+          // Progress hesaplama
           const startDate = new Date(race.date.getFullYear(), 0, 1);
-          const progress = Math.min(((now - startDate) / (race.date - startDate)) * 100, 100);
+          const progress = Math.min(
+            ((now - startDate) / (race.date - startDate)) * 100, 
+            100
+          );
 
+          // Element güncellemeleri
           if(race.elements.progress) {
             race.elements.progress.style.width = `${progress}%`;
             race.elements.days.textContent = `Son ${days} gün`;
@@ -208,11 +160,12 @@
           }
         });
 
-        if(document.getElementById("timer")) {
+        // Ana sayaç güncelleme
+        if(mainTimer) {
           const mainDate = new Date("2025-07-28");
           const mainDays = Math.floor((mainDate - now) / (1000 * 60 * 60 * 24));
           const mainHours = Math.floor(((mainDate - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          document.getElementById("timer").innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
+          mainTimer.innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
         }
       }
 
@@ -231,8 +184,9 @@
         });
       });
 
+      // İlk çalıştırma ve güncelleme aralığı
       updateAll();
-      setInterval(updateAll, 60000);
+      setInterval(updateAll, 60000); // 1 dakikada bir güncelle
     });
   </script>
 </body>
