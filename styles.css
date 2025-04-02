@@ -1,375 +1,199 @@
-/* ... (mevcut CSS değişkenleri ve reset kuralları aynen kalacak) ... */
+:root {
+    --primary: #1a237e;
+    --secondary: #ffab00;
+    --dark: #0d1440;
+    --light: #f5f7ff;
+}
 
-/* YENİ EKLENEN YARIŞMA KARTI STİLLERİ - content section altına ekleyin */
-.competition-gallery {
-  display: grid;
-  gap: 25px;
-  margin-top: 30px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--light);
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: var(--dark);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--secondary);
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('competitions/robolig-2024.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.countdown-section {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+#countdown-timer {
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: var(--primary);
+}
+
+.progress-container {
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    margin: 1rem auto;
+    overflow: hidden;
+    max-width: 500px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.competition-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
 }
 
 .competition-card {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  background: white;
-  transition: transform 0.3s ease;
-  margin-bottom: 30px;
-}
-
-.competition-card:hover {
-  transform: translateY(-5px);
-}
-
-.card-preview {
-  position: relative;
-  padding: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 .card-preview img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.card-preview-content {
-  padding: 15px 0;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 .achievement-badge {
-  background: #f8d56b;
-  color: #8a6d03;
-  padding: 5px 15px;
-  border-radius: 20px;
-  display: inline-flex;
-  align-items: center;
-  margin: 10px 0;
-  font-weight: bold;
-  font-size: 0.9rem;
+    background: #f8d56b;
+    color: #8a6d03;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 0;
+    font-weight: bold;
 }
 
 .achievement-badge i {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
 .card-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  background: #f9f9f9;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
 }
 
 .card-details.active {
-  max-height: 2000px;
-  padding: 20px;
+    max-height: 2000px;
+    padding: 1rem;
 }
 
-.competition-info {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.competition-info li {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  color: #555;
-}
-
-.competition-info i {
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-  color: var(--secondary-color);
-}
-
-.competition-info strong {
-  margin-right: 5px;
-  color: var(--primary-color);
-}
-
-.competition-photos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin: 30px 0;
-}
-
-.photo-item {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.photo-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.photo-item p {
-  text-align: center;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* YENİ FOOTER STİLLERİ - dosya sonuna ekleyin */
-.site-footer {
-  background: linear-gradient(135deg, var(--primary-color), #324a67);
-  color: white;
-  padding: 50px 0 20px;
-  margin-top: 80px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-}
-
-.footer-brand img {
-  height: 50px;
-  margin-bottom: 15px;
-  background: white;
-  padding: 5px;
-  border-radius: 8px;
-}
-
-.footer-brand p {
-  color: #ecf0f1;
-  line-height: 1.6;
-}
-
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 30px;
-}
-
-.footer-section h4 {
-  color: var(--secondary-color);
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.footer-section h4::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  height: 2px;
-  background: var(--secondary-color);
-}
-
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-  color: #bdc3c7;
-  text-decoration: none;
-  transition: all 0.3s;
-  display: block;
-  padding: 5px 0;
-}
-
-.footer-section ul li a:hover {
-  color: white;
-  transform: translateX(5px);
-}
-
-.social-links {
-  display: flex;
-  gap: 15px;
-}
-
-.social-links a {
-  color: white;
-  font-size: 1.2rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.social-links a:hover {
-  background: var(--secondary-color);
-  transform: translateY(-3px);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 30px;
-  margin-top: 30px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.9rem;
-  color: #bdc3c7;
-}
-
-.footer-bottom a {
-  color: var(--secondary-color);
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.footer-bottom a:hover {
-  text-decoration: underline;
-}
-
-/* BUTON STİLLERİ - mevcut buton stillerinin altına ekleyin */
-.expand-btn, .collapse-btn {
-  background: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  margin-top: 15px;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-.expand-btn i, .collapse-btn i {
-  margin-left: 8px;
-}
-
-.expand-btn:hover {
-  background: #e67e22;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
-}
-
-.collapse-btn {
-  background: #e74c3c;
-  width: 100%;
-  border-radius: 0;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.collapse-btn:hover {
-  background: #c0392b;
-}
-
-/* RESPONSIVE TASARIM - mevcut media query'lere ekleyin */
-@media (max-width: 768px) {
-  .competition-photos {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .footer-section {
-    margin-bottom: 20px;
-  }
-  
-  .card-preview img {
-    height: 180px;
-  }
-}
-
-@media (max-width: 480px) {
-  .competition-card {
-    margin-bottom: 20px;
-  }
-  
-  .card-details.active {
-    padding: 15px;
-  }
-  
-  .photo-item {
-    padding: 10px;
-  }
-}
-/* ÖNEMLİ: Bu kodu styles.css dosyanızın EN SONUNA ekleyin */
-
-/* ==================== YARIŞMA KARTLARI ==================== */
-.competition-gallery {
-  display: grid;
-  gap: 25px;
-  margin: 30px auto;
-  max-width: 1200px;
-}
-
-.competition-card {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  background: white;
-  transition: all 0.3s ease;
-  margin-bottom: 30px;
-  border: 1px solid #eee;
-}
-
-.competition-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.card-preview {
-  position: relative;
-  padding: 20px;
-}
-
-.card-preview img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #f0f0f0;
-}
-
-.card-preview-content {
-  padding: 15px 0;
-}
-
-/* ... (diğer stiller aynen kalacak) ... */
-
-/* ==================== MEDIA QUERY OPTİMİZASYONU ==================== */
-@media (max-width: 992px) {
-  .competition-card {
-    margin-bottom: 20px;
-  }
-  
-  .card-preview img {
+.photo-gallery img {
+    width: 100%;
+    border-radius: 5px;
     height: 200px;
-  }
+    object-fit: cover;
 }
 
-@media (max-width: 576px) {
-  .card-preview {
-    padding: 15px;
-  }
-  
-  .card-preview img {
-    height: 180px;
-  }
-  
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    #countdown-timer {
+        font-size: 1.5rem;
+    }
 }
