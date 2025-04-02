@@ -205,3 +205,119 @@ nav ul li a:hover {
     height: 50px;
   }
 }
+/* YENİ ZAMAN ÇİZGİSİ STİLLERİ (Mevcut CSS'inizle uyumlu) */
+.race-timeline {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: slideUp 0.8s ease-out;
+}
+
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-bar {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  margin: 2.5rem 0;
+  overflow: hidden;
+}
+
+.timeline-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), var(--highlight-color));
+  width: 0;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.timeline-cursor {
+  position: absolute;
+  top: -10px;
+  width: 24px;
+  height: 24px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transform: translateX(-12px);
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+  z-index: 10;
+  transition: left 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.race-markers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.marker {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  padding: 0.8rem;
+  background: rgba(245, 247, 250, 0.7);
+  border-radius: 8px;
+  flex: 1;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.marker.active {
+  background: var(--primary-color);
+  color: var(--white);
+  font-weight: 700;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(31, 42, 68, 0.3);
+}
+
+.marker::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #bdc3c7;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+}
+
+.marker.active::before {
+  background: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.3);
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .race-timeline {
+    padding: 1rem;
+  }
+  
+  .race-markers {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .marker {
+    margin: 5px 0;
+  }
+  
+  .timeline-bar {
+    margin: 1.5rem 0;
+  }
+}
+
+/* Animasyon Güncellemesi */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.marker.active {
+  animation: pulse 2s infinite;
+}
