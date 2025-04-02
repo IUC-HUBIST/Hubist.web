@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HUBİST - Anasayfa</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <!-- Header ve Navigasyon -->
@@ -46,33 +47,8 @@
   <section class="content" id="yarisma">
     <h2>Yarışmalar</h2>
     <p>HUBİST, birçok teknoloji yarışmasında yer almakta ve kendi projelerini geliştirmektedir. İHA projeleri, robot teknolojileri ve yapay zeka alanlarında büyük başarılara imza atıyoruz.</p>
-<!-- Yarışmalar bölümünden SONRA ekleyin -->
-<section class="content" id="past-competitions">
-  <h2>Katıldığımız Yarışmalar</h2>
-  
-  <div class="competition-gallery">
-    <!-- Örnek Kart -->
-    <div class="competition-card">
-      <div class="card-preview">
-        <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024">
-        <h3>2024 Teknofest RoboLig</h3>
-        <button class="expand-btn">+ Detay Göster</button>
-      </div>
-      <div class="card-details">
-        <div class="card-content">
-          <h4>4.lük Ödülü</h4>
-          <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur. 2025'te 1. olmak için çalışıyoruz!</p>
-          <div class="competition-photos">
-            <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı">
-            <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni">
-          </div>
-        </div>
-        <button class="collapse-btn">× Kapat</button>
-      </div>
-    </div>
-  </div>
-</section>
-    <!-- Yeni Yarışma Timer -->
+    
+    <!-- Yarışma Timer -->
     <div class="race-container">
       <div class="race-item">
         <div class="race-header">
@@ -102,6 +78,32 @@
     </div>
   </section>
 
+  <!-- Katıldığımız Yarışmalar -->
+  <section class="content" id="past-competitions">
+    <h2>Katıldığımız Yarışmalar</h2>
+    
+    <div class="competition-gallery">
+      <div class="competition-card">
+        <div class="card-preview">
+          <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy">
+          <h3>2024 Teknofest RoboLig</h3>
+          <button class="expand-btn">+ Detay Göster</button>
+        </div>
+        <div class="card-details">
+          <div class="card-content">
+            <h4>4.lük Ödülü</h4>
+            <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur. Bu başarımızı 2025 yılında daha ileriye taşımak ve 1. olabilmek için tüm gücümüzle hazırlanmaktayız.</p>
+            <div class="competition-photos">
+              <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
+              <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
+            </div>
+          </div>
+          <button class="collapse-btn">× Kapat</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="content" id="iletisim">
     <h2>İletişim</h2>
     <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
@@ -110,52 +112,77 @@
   <script>
     // Gelişmiş Sayaç Sistemi
     document.addEventListener('DOMContentLoaded', function() {
+      // Yarışma verileri
       const races = [
         {
           id: "robolig",
-          date: new Date("2025-07-28"),
-          progressBar: document.getElementById("robolig-progress"),
-          daysElement: document.getElementById("robolig-days"),
-          countdownElement: document.getElementById("robolig-countdown")
+          date: new Date("2025-07-28T00:00:00"),
+          elements: {
+            progress: document.getElementById("robolig-progress"),
+            days: document.getElementById("robolig-days"),
+            countdown: document.getElementById("robolig-countdown")
+          }
         },
         {
           id: "savasah",
-          date: new Date("2025-08-22"),
-          progressBar: document.getElementById("savasah-progress"),
-          daysElement: document.getElementById("savasah-days"),
-          countdownElement: document.getElementById("savasah-countdown")
+          date: new Date("2025-08-22T00:00:00"),
+          elements: {
+            progress: document.getElementById("savasah-progress"),
+            days: document.getElementById("savasah-days"),
+            countdown: document.getElementById("savasah-countdown")
+          }
         }
       ];
+
+      // Ana sayaç elementleri
+      const mainTimer = document.getElementById("timer");
 
       function updateAll() {
         const now = new Date();
         
         races.forEach(race => {
-          // Zaman hesaplamaları
           const timeLeft = race.date - now;
           const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
           const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           
           // Progress hesaplama
-          const startDate = new Date("2025-01-01");
-          const totalDuration = race.date - startDate;
-          const elapsed = now - startDate;
-          const progress = Math.min((elapsed / totalDuration) * 100, 100);
+          const startDate = new Date(race.date.getFullYear(), 0, 1);
+          const progress = Math.min(
+            ((now - startDate) / (race.date - startDate)) * 100, 
+            100
+          );
 
-          // Güncellemeler
-          race.progressBar.style.width = `${progress}%`;
-          race.daysElement.textContent = `Son ${days} gün`;
-          race.countdownElement.textContent = `${days}g ${hours}s`;
+          // Element güncellemeleri
+          if(race.elements.progress) {
+            race.elements.progress.style.width = `${progress}%`;
+            race.elements.days.textContent = `Son ${days} gün`;
+            race.elements.countdown.textContent = `${days}g ${hours}s`;
+          }
         });
 
         // Ana sayaç güncelleme
-        const mainTimer = document.getElementById("timer");
-        const mainDate = new Date("2025-07-28");
-        const mainTimeLeft = mainDate - now;
-        const mainDays = Math.floor(mainTimeLeft / (1000 * 60 * 60 * 24));
-        const mainHours = Math.floor((mainTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        mainTimer.innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
+        if(mainTimer) {
+          const mainDate = new Date("2025-07-28");
+          const mainDays = Math.floor((mainDate - now) / (1000 * 60 * 60 * 24));
+          const mainHours = Math.floor(((mainDate - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          mainTimer.innerHTML = `${mainDays}<small>gün</small> ${mainHours}<small>saat</small>`;
+        }
       }
+
+      // Kart aç/kapa fonksiyonları
+      document.querySelectorAll('.expand-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.competition-card');
+          card.querySelector('.card-details').classList.add('active');
+        });
+      });
+
+      document.querySelectorAll('.collapse-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.competition-card');
+          card.querySelector('.card-details').classList.remove('active');
+        });
+      });
 
       // İlk çalıştırma ve güncelleme aralığı
       updateAll();
