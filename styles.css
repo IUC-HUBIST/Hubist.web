@@ -564,3 +564,25 @@ footer {
 .competition-photos img:hover {
   transform: scale(1.03);
 }
+/* Typed.js Yazı Efekti Stilleri */
+.race-description {
+  min-height: 60px;
+  padding: 10px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden; /* Taşan metinleri gizler */
+}
+
+.typed-cursor {
+  display: none !important; /* Yanıp sönen imleci gizler */
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .race-description {
+    min-height: 80px; /* Mobilde daha geniş alan */
+    font-size: 14px;
+  }
+}
