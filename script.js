@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const progress = ((now - yearStart) / (yearEnd - yearStart)) * 100;
 
         race.elements.progress.style.width = `${Math.min(progress, 100)}%`;
-        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
+        race.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s ${minutesLeft}d`;
 
         if (daysLeft < minDaysLeft) {
           minDaysLeft = daysLeft;
@@ -94,19 +94,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!details.classList.contains('active')) {
           details.querySelectorAll('img').forEach(img => {
             img.style.objectFit = 'cover';
+            img.style.transform = 'scale(1)';
+            img.style.border = 'none';
           });
         }
       }
     });
   });
 
-  // Resim hover efekti
+  // Gelişmiş görsel hover efekti (balon efekti)
   document.querySelectorAll('.competition-photos img').forEach(img => {
     img.addEventListener('mouseenter', () => {
       img.style.objectFit = 'contain';
-      img.style.transform = 'scale(1.05)';
-      img.style.zIndex = '10';
-      img.style.background = '#f5f5f5';
+      img.style.transform = 'scale(1.1)';
+      img.style.zIndex = '100';
+      img.style.background = 'white';
+      img.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
+      img.style.border = '3px solid #f39c12';
+      img.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
     });
     
     img.addEventListener('mouseleave', () => {
@@ -114,6 +119,19 @@ document.addEventListener('DOMContentLoaded', function() {
       img.style.transform = 'scale(1)';
       img.style.zIndex = '1';
       img.style.background = 'transparent';
+      img.style.boxShadow = 'none';
+      img.style.border = 'none';
+    });
+  });
+
+  // Sosyal medya ikonları hover efekti
+  document.querySelectorAll('.social-icons a').forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+      icon.style.transform = 'translateY(-5px) scale(1.1)';
+    });
+    
+    icon.addEventListener('mouseleave', () => {
+      icon.style.transform = 'translateY(0) scale(1)';
     });
   });
 
@@ -128,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({
-          behavior: 'smooth'
+          behavior: 'smooth',
+          block: 'start'
         });
       }
     });
