@@ -192,5 +192,63 @@
       });
     });
   </script>
+  <!-- Typed.js Kütüphanesi -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<script>
+// Güncellenmiş Yazı Animasyon Kodu
+document.addEventListener('DOMContentLoaded', function() {
+  const initTyped = () => {
+    const boxes = [
+      { id: "robolig-box", text: "RoboLig, Türkiye'nin en prestijli robotik yarışmasıdır..." },
+      { id: "savasaniha-box", text: "Savaşan İHA, insansız hava araçlarının simüle edilmiş savaş senaryolarında yarıştığı bir teknoloji yarışmasıdır." }
+    ];
+
+    boxes.forEach(box => {
+      const element = document.getElementById(box.id);
+      if (!element) return;
+
+      const desc = document.createElement("div");
+      desc.className = "race-description";
+      element.appendChild(desc);
+
+      let typed;
+      let isTyping = false;
+
+      element.addEventListener("mouseenter", () => {
+        if (!isTyping) {
+          isTyping = true;
+          desc.innerHTML = '';
+          typed = new Typed(desc, {
+            strings: [box.text],
+            typeSpeed: 30,
+            showCursor: false,
+            onComplete: () => {
+              isTyping = false;
+              if (!element.matches(':hover')) {
+                typed.strings = [''];
+                typed.start();
+              }
+            }
+          });
+        }
+      });
+
+      element.addEventListener("mouseleave", () => {
+        if (typed && !isTyping && desc.textContent === box.text) {
+          typed.strings = [''];
+          typed.start();
+        }
+      });
+    });
+  };
+
+  if (typeof Typed !== 'undefined') {
+    initTyped();
+  } else {
+    console.error("Typed.js kütüphanesi yüklenemedi!");
+  }
+});
+</script>
 </body>
 </html>
