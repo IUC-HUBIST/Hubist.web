@@ -2,119 +2,108 @@ document.addEventListener('DOMContentLoaded', () => {
     // Yarışma verileri
     const competitions = [
         { 
-            name: '2024 RoboLig Yarışması', 
-            date: new Date('2024-07-28T00:00:00'),
-            elements: {
+            name: 'ROBOLIG', 
+            date: new Date('2025-07-28T00:00:00'),
+            element: {
                 progress: document.getElementById('robolig-progress'),
                 days: document.getElementById('robolig-days'),
-                countdown: document.getElementById('robolig-countdown')
+                countdown: document.getElementById('robolig-countdown'),
+                marker: document.querySelector('[data-date="2025-07-28"]')
             }
         },
         { 
             name: 'SAVASAH IHA', 
-            date: new Date('2024-08-22T00:00:00'),
-            elements: {
+            date: new Date('2025-08-22T00:00:00'),
+            element: {
                 progress: document.getElementById('savasah-progress'),
                 days: document.getElementById('savasah-days'),
-                countdown: document.getElementById('savasah-countdown')
+                countdown: document.getElementById('savasah-countdown'),
+                marker: document.querySelector('[data-date="2025-08-22"]')
             }
         }
     ];
 
     // Ana sayaç elementleri
     const mainTimer = document.getElementById('timer');
+    const daysLeftElement = document.getElementById('days-left');
 
-    // Tarih formatlama fonksiyonu
-    function formatDate(date) {
-        return new Intl.DateTimeFormat('tr-TR', { 
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric' 
-        }).format(date);
-    }
-
-    // Sayaç güncelleme fonksiyonu
-    function updateCountdown() {
+    function updateAll() {
         const now = new Date();
-        let nextCompetition = null;
-        let minDaysLeft = Infinity;
-
+        let closest = { days: Infinity };
+        
         competitions.forEach(comp => {
+            if (!comp.element.progress || !comp.element.countdown) return;
+
             const timeLeft = comp.date - now;
-            const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const days = Math.floor(timeLeft / (1000 * 3600 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 3600 * 24)) / (1000 * 3600));
+            const minutes = Math.floor((timeLeft % (1000 * 3600)) / (1000 * 60));
             
-            // Progress bar güncelleme
-            if (comp.elements.progress) {
-                const yearStart = new Date(comp.date.getFullYear(), 0, 1);
-                const progress = Math.min(
-                    ((now - yearStart) / (comp.date - yearStart)) * 100, 
-                    100
-                );
-                comp.elements.progress.style.width = `${progress}%`;
+            // Progress hesaplama
+            const startDate = new Date(comp.date.getFullYear(), 0, 1);
+            const progress = Math.min(
+                ((now - startDate) / (comp.date - startDate)) * 100, 
+                100
+            );
+            
+            // Element güncellemeleri
+            comp.element.progress.style.width = `${progress}%`;
+            comp.element.countdown.textContent = `${days}g ${hours}s`;
+            comp.element.countdown.setAttribute('title', `${hours} saat ${minutes} dakika`);
+            
+            if (comp.element.days) {
+                comp.element.days.textContent = `Son ${days} gün`;
             }
 
-            // Sayaç metinleri
-            if (comp.elements.countdown) {
-                comp.elements.countdown.textContent = `${daysLeft}g ${hoursLeft}s`;
+            // Marker durumu
+            if (comp.element.marker) {
+                comp.element.marker.classList.toggle('active', days >= 0);
+                comp.element.marker.classList.toggle('past', days < 0);
             }
-
-            if (comp.elements.days) {
-                comp.elements.days.textContent = daysLeft > 0 
-                    ? `Son ${daysLeft} gün` 
-                    : 'Yarışma tamamlandı';
-            }
-
-            // En yakın yarışmayı belirle
-            if (daysLeft > 0 && daysLeft < minDaysLeft) {
-                minDaysLeft = daysLeft;
-                nextCompetition = comp;
+            
+            // En yakın yarışmayı bul
+            if (days >= 0 && days < closest.days) {
+                closest = { name: comp.name, days: days };
             }
         });
 
-        // Ana sayaç güncelleme
-        if (mainTimer && nextCompetition) {
-            const days = Math.floor((nextCompetition.date - now) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(((nextCompetition.date - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            mainTimer.innerHTML = `${days}<small>gün</small> ${hours}<small>saat</small>`;
+        // Ana sayaç ve bilgi güncelleme
+        if (mainTimer && closest.days !== Infinity) {
+            mainTimer.innerHTML = `${closest.days}<small>gün</small>`;
+        }
+        
+        if (daysLeftElement) {
+            daysLeftElement.textContent = closest.days !== Infinity 
+                ? `En yakın yarışma: ${closest.name} - ${closest.days} gün kaldı`
+                : 'Yaklaşan yarışma bulunmamaktadır';
         }
     }
 
-    // Yarışma kartları yönetimi
+    // Kart işlevleri
     function setupCompetitionCards() {
-        document.querySelectorAll('.competition-card').forEach(card => {
-            const expandBtn = card.querySelector('.expand-btn');
-            const collapseBtn = card.querySelector('.collapse-btn');
-            const details = card.querySelector('.card-details');
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = e.target.closest('.competition-card');
+                if (card) {
+                    card.querySelector('.card-details')?.classList.add('active');
+                }
+            });
+        });
 
-            if (expandBtn && details) {
-                expandBtn.addEventListener('click', () => {
-                    details.classList.add('active');
-                    details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                });
-            }
-
-            if (collapseBtn && details) {
-                collapseBtn.addEventListener('click', () => {
-                    details.classList.remove('active');
-                });
-            }
+        document.querySelectorAll('.collapse-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = e.target.closest('.competition-card');
+                if (card) {
+                    card.querySelector('.card-details')?.classList.remove('active');
+                }
+            });
         });
     }
 
-    // Sayfa yüklendiğinde çalıştır
-    updateCountdown();
+    // İlk çalıştırma
+    updateAll();
     setupCompetitionCards();
     
-    // 1 dakikada bir güncelle
-    setInterval(updateCountdown, 60000);
-
-    // Ekstra: Yarışma detaylarına otomatik tarih ekleme
-    document.querySelectorAll('.competition-info li[data-date]').forEach(item => {
-        const dateStr = item.getAttribute('data-date');
-        const date = new Date(dateStr);
-        if (!isNaN(date)) {
-            item.textContent += formatDate(date);
-        }
-    });
+    // Güncelleme aralığı
+    setInterval(updateAll, 60000); // 1 dakikada bir güncelle
 });
