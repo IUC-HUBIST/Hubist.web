@@ -68,3 +68,39 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   setInterval(updateCountdown, 60000);
 });
+// Lightbox fonksiyonu
+function initLightbox() {
+  const images = document.querySelectorAll('.competition-photos img');
+  const lightbox = document.createElement('div');
+  lightbox.id = 'lightbox';
+  document.body.appendChild(lightbox);
+
+  images.forEach(image => {
+    image.addEventListener('click', () => {
+      lightbox.classList.add('active');
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+      
+      while (lightbox.firstChild) {
+        lightbox.removeChild(lightbox.firstChild);
+      }
+      lightbox.appendChild(img);
+    });
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target !== e.currentTarget) return;
+    lightbox.classList.remove('active');
+  });
+
+  // ESC tuşuyla kapatma
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      lightbox.classList.remove('active');
+    }
+  });
+}
+
+// DOM yüklendiğinde lightbox'ı başlat
+document.addEventListener('DOMContentLoaded', initLightbox);
