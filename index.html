@@ -6,6 +6,7 @@
   <meta name="description" content="HUBİST - Teknoloji ve inovasyon alanında projeler geliştiren bir ekip. Yarışmalara katılın, yeni projeler geliştirin.">
   <title>HUBİST - Anasayfa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/logo.png" type="image/png">
 </head>
@@ -50,7 +51,7 @@
       </div>
       
       <div class="race-container">
-        <div class="race-item">
+        <div class="race-item" id="robolig-box">
           <div class="race-header">
             <h3>ROBOLİG</h3>
             <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
@@ -58,9 +59,10 @@
           <div class="progress-container">
             <div class="progress-bar" id="robolig-progress"></div>
           </div>
+          <div class="race-description" id="robolig-desc"></div>
         </div>
 
-        <div class="race-item">
+        <div class="race-item" id="savasaniha-box">
           <div class="race-header">
             <h3>SAVAŞAN İHA</h3>
             <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
@@ -68,6 +70,7 @@
           <div class="progress-container">
             <div class="progress-bar" id="savasah-progress"></div>
           </div>
+          <div class="race-description" id="savasaniha-desc"></div>
         </div>
       </div>
     </div>
@@ -80,7 +83,9 @@
       <div class="competition-gallery">
         <div class="competition-card">
           <div class="card-preview">
-            <img src="images/competitions/robolig-2024.jpg" alt="Teknofest RoboLig 2024 Robotumuz" loading="lazy" style="object-position: center 70%;">
+            <a href="images/competitions/robolig-2024.jpg" data-fancybox="gallery" data-caption="2024 Teknofest RoboLig">
+              <img src="images/competitions/robolig-2024.jpg" alt="Teknofest RoboLig 2024 Robotumuz" loading="lazy" style="object-position: center 70%;">
+            </a>
             <h3>2024 Teknofest RoboLig</h3>
             <button class="details-btn">Detayları Göster</button>
           </div>
@@ -89,10 +94,18 @@
               <h4>4.lük Ödülü</h4>
               <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
               <div class="competition-photos">
-                <img src="images/competitions/robolig-1.jpg" alt="Robot Yarış Anı" loading="lazy">
-                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
-                <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
-                <img src="images/competitions/robolig-4.jpg" alt="Robot Teknik Detay" loading="lazy">
+                <a href="images/competitions/robolig-1.jpg" data-fancybox="gallery" data-caption="Robot Yarış Anı">
+                  <img src="images/competitions/robolig-1.jpg" alt="Robot Yarış Anı" loading="lazy">
+                </a>
+                <a href="images/competitions/robolig-2.jpg" data-fancybox="gallery" data-caption="Ödül Töreni">
+                  <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
+                </a>
+                <a href="images/competitions/robolig-3.jpg" data-fancybox="gallery" data-caption="Takım Çalışması">
+                  <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
+                </a>
+                <a href="images/competitions/robolig-4.jpg" data-fancybox="gallery" data-caption="Robot Teknik Detay">
+                  <img src="images/competitions/robolig-4.jpg" alt="Robot Teknik Detay" loading="lazy">
+                </a>
               </div>
               <div class="competition-info">
                 <h4>Yarışma Detayları</h4>
@@ -132,6 +145,52 @@
     </div>
   </footer>
 
+  <!-- Fancybox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- Typed.js for Typewriter Effect -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="script.js"></script>
+  
+  <script>
+    // Initialize Fancybox
+    Fancybox.bind("[data-fancybox]", {
+      // Options can go here
+    });
+
+    // Typewriter Effect for Competitions
+    document.addEventListener("DOMContentLoaded", function() {
+      const roboligBox = document.getElementById("robolig-box");
+      const savasanBox = document.getElementById("savasaniha-box");
+      const roboligDesc = document.getElementById("robolig-desc");
+      const savasanDesc = document.getElementById("savasaniha-desc");
+
+      const roboligText = "RoboLig, Türkiye'nin en prestijli robotik yarışmasıdır. Otonom robotların görevleri tamamlaması üzerine kurulu bir ligdir.";
+      const savasanText = "Savaşan İHA, insansız hava araçlarının simüle edilmiş savaş senaryolarında yarıştığı bir teknoloji yarışmasıdır.";
+
+      roboligBox.addEventListener("mouseenter", function() {
+        const typed = new Typed(roboligDesc, {
+          strings: [roboligText],
+          typeSpeed: 30,
+          showCursor: false
+        });
+      });
+
+      roboligBox.addEventListener("mouseleave", function() {
+        roboligDesc.innerHTML = "";
+      });
+
+      savasanBox.addEventListener("mouseenter", function() {
+        const typed = new Typed(savasanDesc, {
+          strings: [savasanText],
+          typeSpeed: 30,
+          showCursor: false
+        });
+      });
+
+      savasanBox.addEventListener("mouseleave", function() {
+        savasanDesc.innerHTML = "";
+      });
+    });
+  </script>
 </body>
 </html>
