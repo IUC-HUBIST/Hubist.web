@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Diğer mevcut kodlarınız burada kalacak...
+  // Mobil menü ve diğer mevcut fonksiyonlar burada aynen kalacak...
 
-  // Daktilo efekti için geliştirilmiş versiyon
-  const roboligBox = document.getElementById("robolig-box");
-  const savasanBox = document.getElementById("savasaniha-box");
-  
-  if (roboligBox && savasanBox) {
+  // Typed.js ile gelişmiş yazı animasyonu
+  const initTypedEffect = () => {
+    const roboligBox = document.getElementById("robolig-box");
+    const savasanBox = document.getElementById("savasaniha-box");
+    
+    if (!roboligBox || !savasanBox) return;
+
+    // Açıklama alanlarını oluştur
     const roboligDesc = document.createElement("div");
     roboligDesc.className = "race-description";
     roboligBox.appendChild(roboligDesc);
@@ -17,73 +20,86 @@ document.addEventListener('DOMContentLoaded', function() {
     const roboligText = "RoboLig, Türkiye'nin en prestijli robotik yarışmasıdır. Otonom robotların görevleri tamamlaması üzerine kurulu bir ligdir.";
     const savasanText = "Savaşan İHA, insansız hava araçlarının simüle edilmiş savaş senaryolarında yarıştığı bir teknoloji yarışmasıdır.";
 
-    // Yazı durumlarını takip etmek için
     let roboligTyped, savasanTyped;
-    let roboligPosition = 0, savasanPosition = 0;
     let roboligTyping = false, savasanTyping = false;
+    let roboligBackspacing = false, savasanBackspacing = false;
 
-    function startTyping(element, text, position, typedInstance) {
+    const startTyping = (element, text, typedInstance) => {
       return new Typed(element, {
-        strings: [text.substring(position)],
+        strings: [text],
         typeSpeed: 30,
         startDelay: 0,
         showCursor: false,
         onComplete: () => {
-          if (element === roboligDesc) roboligTyping = false;
-          if (element === savasanDesc) savasanTyping = false;
+          if (element === roboligDesc) {
+            roboligTyping = false;
+            if (!roboligBox.matches(':hover')) startBackspacing(roboligDesc, roboligTyped);
+          }
+          if (element === savasanDesc) {
+            savasanTyping = false;
+            if (!savasanBox.matches(':hover')) startBackspacing(savasanDesc, savasanTyped);
+          }
         }
       });
-    }
+    };
 
-    function stopTyping(typedInstance, element) {
-      if (typedInstance) {
-        const currentText = element.textContent;
-        typedInstance.destroy();
-        element.textContent = currentText; // Mevcut metni koru
-      }
-    }
+    const startBackspacing = (element, typedInstance) => {
+      if (!typedInstance) return;
+      
+      typedInstance.strings = [''];
+      typedInstance.start();
+      typedInstance.options.typeSpeed = 15;
+      typedInstance.options.backSpeed = 30;
+      typedInstance.options.loop = false;
+      typedInstance.reset();
+    };
 
-    // RoboLig için
+    // RoboLig için olay dinleyicileri
     roboligBox.addEventListener("mouseenter", () => {
-      if (!roboligTyping) {
+      if (!roboligTyping && !roboligBackspacing) {
         roboligTyping = true;
-        roboligTyped = startTyping(roboligDesc, roboligText, roboligPosition, roboligTyped);
+        roboligBackspacing = false;
+        if (roboligTyped) roboligTyped.destroy();
+        roboligDesc.textContent = '';
+        roboligTyped = startTyping(roboligDesc, roboligText, roboligTyped);
       }
     });
 
     roboligBox.addEventListener("mouseleave", () => {
-      if (roboligTyped) {
-        roboligPosition = roboligDesc.textContent.length;
-        stopTyping(roboligTyped, roboligDesc);
+      if (roboligTyped && !roboligBackspacing && roboligDesc.textContent.length === roboligText.length) {
+        roboligBackspacing = true;
+        startBackspacing(roboligDesc, roboligTyped);
       }
     });
 
-    // Savaşan İHA için
+    // Savaşan İHA için olay dinleyicileri
     savasanBox.addEventListener("mouseenter", () => {
-      if (!savasanTyping) {
+      if (!savasanTyping && !savasanBackspacing) {
         savasanTyping = true;
-        savasanTyped = startTyping(savasanDesc, savasanText, savasanPosition, savasanTyped);
+        savasanBackspacing = false;
+        if (savasanTyped) savasanTyped.destroy();
+        savasanDesc.textContent = '';
+        savasanTyped = startTyping(savasanDesc, savasanText, savasanTyped);
       }
     });
 
     savasanBox.addEventListener("mouseleave", () => {
-      if (savasanTyped) {
-        savasanPosition = savasanDesc.textContent.length;
-        stopTyping(savasanTyped, savasanDesc);
+      if (savasanTyped && !savasanBackspacing && savasanDesc.textContent.length === savasanText.length) {
+        savasanBackspacing = true;
+        startBackspacing(savasanDesc, savasanTyped);
       }
     });
+  };
 
-    // Kutuya tekrar girildiğinde temizleme
-    const resetOnClick = (box, desc, positionVar) => {
-      box.addEventListener('click', () => {
-        desc.textContent = '';
-        positionVar = 0;
-        if (box === roboligBox) roboligPosition = 0;
-        if (box === savasanBox) savasanPosition = 0;
-      });
-    };
-
-    resetOnClick(roboligBox, roboligDesc, roboligPosition);
-    resetOnClick(savasanBox, savasanDesc, savasanPosition);
+  // Typed.js kütüphanesini yükle
+  if (typeof Typed === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
+    script.onload = initTypedEffect;
+    document.head.appendChild(script);
+  } else {
+    initTypedEffect();
   }
+
+  // Diğer mevcut kodlarınız...
 });
