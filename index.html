@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUBİST - Teknoloji ve İnovasyon</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <meta name="description" content="HUBİST - Teknoloji ve inovasyon alanında projeler geliştiren bir ekip. Yarışmalara katılın, yeni projeler geliştirin.">
+  <title>HUBİST - Anasayfa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="images/logo.png">
+  <link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
+      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu" loading="lazy"></a>
     </div>
     <nav>
       <ul>
         <li><a href="#anasayfa">Anasayfa</a></li>
+        <li><a href="#biz-kimiz">Biz Kimiz</a></li>
         <li><a href="#yarisma">Yarışmalar</a></li>
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
@@ -26,30 +28,78 @@
   <section class="hero" id="anasayfa">
     <div class="hero-content">
       <h1>HUBİST - Teknoloji ve İnovasyon</h1>
+      <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
       <a href="#yarisma" class="cta-button">Yarışmaları Gör</a>
     </div>
   </section>
 
+  <section class="content" id="biz-kimiz">
+    <div class="container">
+      <h2>Biz Kimiz?</h2>
+      <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
+    </div>
+  </section>
+
   <section class="content" id="yarisma">
+    <div class="container">
+      <h2>Yarışmalar</h2>
+      
+      <div class="next-race-timer">
+        <h3>Bir Sonraki Yarışmaya Kalan Süre</h3>
+        <div id="next-race-countdown">28g 15s</div>
+      </div>
+      
+      <div class="race-container">
+        <div class="race-item">
+          <div class="race-header">
+            <h3>ROBOLİG</h3>
+            <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="robolig-progress"></div>
+          </div>
+        </div>
+
+        <div class="race-item">
+          <div class="race-header">
+            <h3>SAVAŞAN İHA</h3>
+            <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="savasah-progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" id="past-competitions">
     <div class="container">
       <h2>Katıldığımız Yarışmalar</h2>
       
       <div class="competition-gallery">
         <div class="competition-card">
           <div class="card-preview">
-            <a href="images/competitions/robolig-2024.jpg" data-fancybox="gallery" data-caption="2024 Teknofest RoboLig">
-              <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024">
-            </a>
+            <img src="images/competitions/robolig-2024.jpg" alt="Teknofest RoboLig 2024 Robotumuz" loading="lazy" style="object-position: center 70%;">
             <h3>2024 Teknofest RoboLig</h3>
+            <button class="details-btn">Detayları Göster</button>
           </div>
           <div class="card-details">
-            <div class="competition-photos">
-              <a href="images/competitions/robolig-1.jpg" data-fancybox="gallery" data-caption="Robot Yarış Anı">
-                <img src="images/competitions/robolig-1.jpg" alt="Yarış Anı">
-              </a>
-              <a href="images/competitions/robolig-2.jpg" data-fancybox="gallery" data-caption="Ödül Töreni">
-                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni">
-              </a>
+            <div class="card-content">
+              <h4>4.lük Ödülü</h4>
+              <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
+              <div class="competition-photos">
+                <img src="images/competitions/robolig-1.jpg" alt="Robot Yarış Anı" loading="lazy">
+                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
+                <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
+                <img src="images/competitions/robolig-4.jpg" alt="Robot Teknik Detay" loading="lazy">
+              </div>
+              <div class="competition-info">
+                <h4>Yarışma Detayları</h4>
+                <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                <p><strong>Yer:</strong> İstanbul</p>
+                <p><strong>Takım Üyeleri:</strong> [Takım Bilgileri]</p>
+              </div>
             </div>
           </div>
         </div>
@@ -57,13 +107,31 @@
     </div>
   </section>
 
+  <section class="content" id="iletisim">
+    <div class="container">
+      <h2>İletişim</h2>
+      <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
+      
+      <div class="contact-info">
+        <p class="email">hubist@example.com</p>
+        <div class="social-icons">
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://maps.google.com/?q=İstanbul+Üniversitesi+Cerrahpaşa+Hadımköy+Kampüsü" target="_blank" aria-label="Konum"><i class="fas fa-map-marker-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
-      <p>&copy; 2024 HUBİST</p>
+      <div class="copyright">
+        <p>&copy; 2024 HUBİST. Tüm hakları saklıdır.</p>
+      </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
