@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HUBİST - Teknoloji ve inovasyon alanında projeler geliştiren bir ekip. Yarışmalara katılın, yeni projeler geliştirin.">
+  <meta property="og:title" content="HUBİST - Teknoloji ve İnovasyon">
+  <meta property="og:description" content="Teknoloji ve inovasyon alanında projeler geliştiren bir ekip.">
+  <meta property="og:image" content="https://iuc-hubist.github.io/Hubist.web/images/logo.png">
+  <meta property="og:url" content="https://iuc-hubist.github.io/Hubist.web/">
   <title>HUBİST - Anasayfa</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images/logo.png" type="image/png">
@@ -10,7 +15,7 @@
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu"></a>
+      <a href="index.html"><img src="images/logo.png" alt="HUBİST Logosu" loading="lazy"></a>
     </div>
     <nav>
       <ul>
@@ -20,76 +25,84 @@
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
     </nav>
+    <div class="mobile-menu-btn">☰</div>
   </header>
 
   <section class="hero" id="anasayfa">
     <div class="hero-content">
       <h1>HUBİST - Teknoloji ve İnovasyon</h1>
       <p>Yarışmalara katılın, yeni projeler geliştirin, geleceği şekillendirin.</p>
+      <a href="#yarisma" class="cta-button">Yarışmaları Gör</a>
     </div>
   </section>
 
   <section class="content" id="biz-kimiz">
-    <h2>Biz Kimiz?</h2>
-    <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
+    <div class="container">
+      <h2>Biz Kimiz?</h2>
+      <p>HUBİST, teknoloji ve inovasyon alanında projeler geliştiren bir ekip olarak, mühendislik alanındaki en ileri düzeydeki bilgileri kullanarak yeni projeler ortaya koymaktadır.</p>
+    </div>
   </section>
 
   <section class="content" id="yarisma">
-    <h2>Yarışmalar</h2>
-    
-    <div class="next-race-timer">
-      <h3>Bir Sonraki Yarışmaya Kalan Süre</h3>
-      <div id="next-race-countdown">28g 15s</div>
-    </div>
-    
-    <div class="race-container">
-      <div class="race-item">
-        <div class="race-header">
-          <h3>ROBOLİG</h3>
-          <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="robolig-progress"></div>
-        </div>
+    <div class="container">
+      <h2>Yarışmalar</h2>
+      
+      <div class="next-race-timer">
+        <h3>Bir Sonraki Yarışmaya Kalan Süre</h3>
+        <div id="next-race-countdown">28g 15s</div>
       </div>
-
-      <div class="race-item">
-        <div class="race-header">
-          <h3>SAVAŞAN İHA</h3>
-          <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
+      
+      <div class="race-container">
+        <div class="race-item">
+          <div class="race-header">
+            <h3>ROBOLİG</h3>
+            <span class="countdown" id="robolig-countdown">Yükleniyor...</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="robolig-progress"></div>
+          </div>
         </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="savasah-progress"></div>
+
+        <div class="race-item">
+          <div class="race-header">
+            <h3>SAVAŞAN İHA</h3>
+            <span class="countdown" id="savasah-countdown">Yükleniyor...</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="savasah-progress"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="content" id="past-competitions">
-    <h2>Katıldığımız Yarışmalar</h2>
-    
-    <div class="competition-gallery">
-      <div class="competition-card">
-        <div class="card-preview">
-          <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy">
-          <h3>2024 Teknofest RoboLig</h3>
-          <button class="details-btn">Detayları Göster</button>
-        </div>
-        <div class="card-details">
-          <div class="card-content">
-            <h4>4.lük Ödülü</h4>
-            <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
-            <div class="competition-photos">
-              <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
-              <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
-              <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
-              <img src="images/competitions/robolig-4.jpg" alt="Robot Detayı" loading="lazy">
-            </div>
-            <div class="competition-info">
-              <h4>Yarışma Detayları</h4>
-              <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
-              <p><strong>Yer:</strong> İstanbul</p>
-              <p><strong>Takım Üyeleri:</strong> [Takım Bilgileri]</p>
+    <div class="container">
+      <h2>Katıldığımız Yarışmalar</h2>
+      
+      <div class="competition-gallery">
+        <div class="competition-card">
+          <div class="card-preview">
+            <img src="images/competitions/robolig-2024.jpg" alt="RoboLig 2024" loading="lazy">
+            <h3>2024 Teknofest RoboLig</h3>
+            <button class="details-btn">Detayları Göster</button>
+          </div>
+          <div class="card-details">
+            <div class="card-content">
+              <h4>4.lük Ödülü</h4>
+              <p>Takımımız 2024 Teknofest RoboLig yarışmasında 4. olmuştur.</p>
+              <div class="competition-photos">
+                <img src="images/competitions/robolig-1.jpg" alt="Yarışma Anı" loading="lazy">
+                <img src="images/competitions/robolig-2.jpg" alt="Ödül Töreni" loading="lazy">
+                <img src="images/competitions/robolig-3.jpg" alt="Takım Çalışması" loading="lazy">
+                <img src="images/competitions/robolig-4.jpg" alt="Robot Detayı" loading="lazy">
+              </div>
+              <div class="competition-info">
+                <h4>Yarışma Detayları</h4>
+                <p><strong>Tarih:</strong> 28 Temmuz 2024</p>
+                <p><strong>Yer:</strong> İstanbul</p>
+                <p><strong>Takım Üyeleri:</strong> [Takım Bilgileri]</p>
+              </div>
             </div>
           </div>
         </div>
@@ -98,9 +111,57 @@
   </section>
 
   <section class="content" id="iletisim">
-    <h2>İletişim</h2>
-    <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
+    <div class="container">
+      <h2>İletişim</h2>
+      <p>HUBİST ekibiyle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
+      
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Adınız:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">E-posta:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Mesajınız:</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Gönder</button>
+      </form>
+    </div>
   </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="HUBİST Logo" loading="lazy">
+        </div>
+        <div class="footer-links">
+          <h3>Bağlantılar</h3>
+          <ul>
+            <li><a href="#anasayfa">Anasayfa</a></li>
+            <li><a href="#biz-kimiz">Hakkımızda</a></li>
+            <li><a href="#yarisma">Yarışmalar</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Sosyal Medya</h3>
+          <div class="social-icons">
+            <a href="#"><img src="images/social/instagram.png" alt="Instagram" loading="lazy"></a>
+            <a href="#"><img src="images/social/linkedin.png" alt="LinkedIn" loading="lazy"></a>
+            <a href="#"><img src="images/social/youtube.png" alt="YouTube" loading="lazy"></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 HUBİST. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
