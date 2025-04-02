@@ -366,4 +366,13 @@ nav ul li a:hover {
   .marker::before {
     top: -15px;
   }
+  
+}
+/* styles.css dosyasında en alta ekleyin */
+@keyframes bounce {
+  to { transform: translateY(-3px); }
+}
+
+.progress-cursor {
+  animation: bounce 0.5s infinite alternate;
 }
