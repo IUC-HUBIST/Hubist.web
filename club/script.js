@@ -109,3 +109,9 @@ async function loadRealCalendar() {
     const data = await response.json();
     console.log(data.items); // Etkinlikleri işle
 }
+// Tema değiştirme butonu ekleyin
+const themeToggle = document.createElement('button');
+themeToggle.innerHTML = '🌙';
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
