@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUBİST Teknoloji Kulübü</title>
+    <title>HUBİST | Teknoloji Kulübü</title>
+    <!-- Premium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/favicon.ico">
+    <!-- FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.ico">
 </head>
 <body>
     <!-- Theme Toggle -->
@@ -15,96 +21,71 @@
         <i class="fas fa-moon"></i>
     </button>
 
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar glass">
         <div class="container">
             <a href="#" class="logo">
-                <img src="assets/logo.png" alt="HUBİST Kulüp Logosu">
-                <span>HUBİST <span>Kulüp</span></span>
+                <img src="assets/img/logo.svg" alt="HUBİST Kulüp" class="logo-img">
+                <span class="logo-text">HUBİST <span>KULÜP</span></span>
             </a>
+            
             <div class="nav-links">
-                <a href="#home" class="active">Anasayfa</a>
-                <a href="#calendar">Takvim</a>
-                <a href="#events">Etkinlikler</a>
-                <a href="#gallery">Galeri</a>
-                <a href="#contact">İletişim</a>
+                <a href="#home" class="nav-link active">Ana Sayfa</a>
+                <a href="#about" class="nav-link">Hakkımızda</a>
+                <a href="#calendar" class="nav-link">Takvim</a>
+                <a href="#events" class="nav-link">Etkinlikler</a>
+                <a href="#gallery" class="nav-link">Galeri</a>
+                <a href="#contact" class="nav-link">İletişim</a>
+                <a href="../index.html" class="nav-button">Takım Sayfası</a>
             </div>
+            
             <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Teknolojiye <span>Yön Veriyoruz</span></h1>
-            <p>İnovatif projeler ve etkinliklerle geleceği şekillendiriyoruz</p>
-            <div class="hero-buttons">
-                <a href="#calendar" class="cta-button">Takvimi Gör</a>
-                <a href="#contact" class="cta-button secondary">Bize Katıl</a>
-            </div>
-        </div>
-        <div class="social-float">
-            <a href="https://instagram.com/hubist0" target="_blank"><img src="assets/social/instagram.svg" alt="Instagram"></a>
-            <a href="https://twitter.com/hubist" target="_blank"><img src="assets/social/twitter.svg" alt="Twitter"></a>
-            <a href="https://discord.gg/hubist" target="_blank"><img src="assets/social/discord.svg" alt="Discord"></a>
-        </div>
-    </section>
-
-    <!-- Calendar Section -->
-    <section class="section" id="calendar">
+        <div class="hero-bg"></div>
         <div class="container">
-            <div class="section-header">
-                <h2>Etkinlik Takvimi</h2>
-                <p>Yaklaşan tüm etkinliklerimiz</p>
-            </div>
-            <div id="calendar"></div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section bg-light" id="events">
-        <div class="container">
-            <div class="section-header">
-                <h2>Öne Çıkan Etkinlikler</h2>
-                <p>Katılabileceğiniz aktiviteler</p>
-            </div>
-            <div class="event-grid">
-                <!-- JS ile dinamik dolacak -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Bize Ulaşın</h3>
-                    <p><i class="fas fa-envelope"></i> kulup@hubist.edu.tr</p>
-                    <p><i class="fas fa-map-marker-alt"></i> İÜC Hadımköy Kampüsü</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
+            <div class="hero-content">
+                <h1 class="hero-title" data-aos="fade-up">Teknolojiye <span class="highlight">Yön Veriyoruz</span></h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">İnovasyon ve mühendislikle geleceği şekillendiriyoruz</p>
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#calendar" class="btn btn-primary">Takvimi Görüntüle</a>
+                    <a href="#contact" class="btn btn-secondary">Bize Katıl</a>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Adınız" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Mesajınız" required></textarea>
-                    <button type="submit">Gönder</button>
-                </form>
             </div>
+        </div>
+        
+        <!-- Social Media Float -->
+        <div class="social-float">
+            <a href="https://instagram.com/hubist0" class="social-icon" target="_blank" data-tooltip="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com/hubist" class="social-icon" target="_blank" data-tooltip="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://discord.gg/hubist" class="social-icon" target="_blank" data-tooltip="Discord">
+                <i class="fab fa-discord"></i>
+            </a>
         </div>
     </section>
 
-    <!-- Scripts -->
+    <!-- Diğer bölümler buraya gelecek -->
+
+    <!-- Scriptler -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/tr.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
