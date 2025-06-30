@@ -3,89 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUBİST | Teknoloji Kulübü</title>
+    <title>HUBİST | Teknoloji ve İnovasyon Kulübü</title>
+    
     <!-- Premium Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..800&display=swap" rel="stylesheet">
+    
+    <!-- Icon Set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animasyon -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css" rel="stylesheet">
+    
+    <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
+    
     <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.ico">
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button id="theme-toggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Navigation -->
+    <!-- Glassmorphism Navigation -->
     <nav class="navbar glass">
         <div class="container">
             <a href="#" class="logo">
-                <img src="assets/img/logo.svg" alt="HUBİST Kulüp" class="logo-img">
+                <img src="assets/img/logo.svg" alt="HUBİST" class="logo-mark">
                 <span class="logo-text">HUBİST <span>KULÜP</span></span>
             </a>
             
             <div class="nav-links">
-                <a href="#home" class="nav-link active">Ana Sayfa</a>
-                <a href="#about" class="nav-link">Hakkımızda</a>
-                <a href="#calendar" class="nav-link">Takvim</a>
-                <a href="#events" class="nav-link">Etkinlikler</a>
-                <a href="#gallery" class="nav-link">Galeri</a>
-                <a href="#contact" class="nav-link">İletişim</a>
-                <a href="../index.html" class="nav-button">Takım Sayfası</a>
+                <a href="#home" class="nav-link active" data-text="Ana Sayfa">Ana Sayfa</a>
+                <a href="#about" class="nav-link" data-text="Hakkımızda">Hakkımızda</a>
+                <a href="#events" class="nav-link" data-text="Etkinlikler">Etkinlikler</a>
+                <a href="#calendar" class="nav-link" data-text="Takvim">Takvim</a>
+                <a href="#contact" class="nav-link" data-text="İletişim">İletişim</a>
             </div>
             
-            <div class="mobile-menu-btn">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-button">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="../index.html" class="nav-button">
+                    Takım Sayfası <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
+            
+            <button class="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Parallax Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
+        <div class="hero-bg" data-parallax="scroll" data-image-src="assets/img/hero-bg.jpg"></div>
+        
+        <div class="hero-overlay"></div>
+        
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title" data-aos="fade-up">Teknolojiye <span class="highlight">Yön Veriyoruz</span></h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">İnovasyon ve mühendislikle geleceği şekillendiriyoruz</p>
-                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#calendar" class="btn btn-primary">Takvimi Görüntüle</a>
-                    <a href="#contact" class="btn btn-secondary">Bize Katıl</a>
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                    <span class="text-gradient">Teknoloji</span> ve 
+                    <span class="text-gradient">İnovasyon</span>
+                </h1>
+                
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Üniversitemizde geleceği şekillendiriyoruz
+                </p>
+                
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#events" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i> Etkinliklere Katıl
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-users"></i> Bize Katıl
+                    </a>
                 </div>
             </div>
         </div>
         
         <!-- Social Media Float -->
         <div class="social-float">
-            <a href="https://instagram.com/hubist0" class="social-icon" target="_blank" data-tooltip="Instagram">
+            <a href="#" class="social-icon" data-tooltip="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://twitter.com/hubist" class="social-icon" target="_blank" data-tooltip="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://discord.gg/hubist" class="social-icon" target="_blank" data-tooltip="Discord">
+            <a href="#" class="social-icon" data-tooltip="Discord">
                 <i class="fab fa-discord"></i>
             </a>
+            <a href="#" class="social-icon" data-tooltip="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Diğer bölümler buraya gelecek -->
-
-    <!-- Scriptler -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/tr.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Diğer bölümler -->
+    
     <script src="assets/js/main.js"></script>
 </body>
 </html>
