@@ -1,11 +1,11 @@
 export default function Faaliyetler() {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Faaliyetlerimiz</h1>
+    <div style={{padding:'20px'}}>
+      <h2>Faaliyetlerimiz</h2>
       <ul>
-        <li>Drone Atölyesi - 15 Ekim 2023</li>
-        <li>Roket Yapım Workshop - 5 Kasım 2023</li>
+        <li>Drone Atölyesi - 15 Ekim</li>
+        <li>Roket Yapımı - 22 Kasım</li>
       </ul>
     </div>
-  );
+  )
 }
