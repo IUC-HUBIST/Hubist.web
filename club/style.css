@@ -168,3 +168,59 @@ body {
         font-size: 2.5rem;
     }
 }
+/* Takvim Stili */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.month {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.month h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+.event-day {
+    background: var(--primary);
+    color: white;
+}
+
+.event-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.day:hover .event-tooltip {
+    opacity: 1;
+}
