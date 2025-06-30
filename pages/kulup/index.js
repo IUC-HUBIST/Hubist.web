@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-export default function Kulup() {
+export default function KulupAnasayfa() {
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h1>Havacılık ve Teknoloji Kulübü</h1>
       <nav style={{ margin: '20px 0' }}>
         <Link href="/kulup/faaliyetler" style={{ marginRight: '15px', color: 'blue' }}>
@@ -15,10 +15,7 @@ export default function Kulup() {
           Takvim
         </Link>
       </nav>
-
-      <div>
-        <p>Kulübümüzün resmi web sayfasına hoşgeldiniz!</p>
-      </div>
+      <p>Kulübümüzün resmi sayfasına hoş geldiniz!</p>
     </div>
   );
 }
