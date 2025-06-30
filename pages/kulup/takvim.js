@@ -1,18 +1,10 @@
 export default function Takvim() {
-  const etkinlikler = [
-    { tarih: "10 Ekim 2023", etkinlik: "Açılış Toplantısı" },
-    { tarih: "25 Aralık 2023", etkinlik: "Yılbaşı Workshop" }
-  ];
-
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h1>Etkinlik Takvimi</h1>
       <ul>
-        {etkinlikler.map((item, index) => (
-          <li key={index}>
-            <strong>{item.tarih}:</strong> {item.etkinlik}
-          </li>
-        ))}
+        <li>1 Aralık 2023: Yılsonu Sergisi</li>
+        <li>15 Ocak 2024: Teknoloji Semineri</li>
       </ul>
     </div>
   );
