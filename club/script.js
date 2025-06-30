@@ -103,3 +103,9 @@ if (typeof AOS !== 'undefined') {
         easing: 'ease-in-out-quad'
     });
 }
+// Google Calendar API entegrasyonu örneği
+async function loadRealCalendar() {
+    const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/[CALENDAR_ID]/events?key=[API_KEY]');
+    const data = await response.json();
+    console.log(data.items); // Etkinlikleri işle
+}
