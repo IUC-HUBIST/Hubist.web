@@ -1,117 +1,97 @@
-// DOM Yüklendikten Sonra Çalışacak Kodlar
+// DOM Hazır
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Mobil Menü Toggle
+    // 1. Tema Değiştirme
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        themeToggle.innerHTML = newTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // 2. Canlı Takvim
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'tr',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listWeek'
+        },
+        events: [
+            {
+                title: 'Robotik Workshop',
+                start: new Date().toISOString().split('T')[0],
+                color: '#4361ee'
+            },
+            {
+                title: 'Kodlama Kampı',
+                start: new Date(Date.now() + 86400000 * 7).toISOString().split('T')[0],
+                color: '#7209b7'
+            }
+        ],
+        eventClick: function(info) {
+            alert('Etkinlik: ' + info.event.title);
+        }
+    });
+    calendar.render();
+
+    // 3. Mobil Menü
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
     mobileMenuBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
         navLinks.classList.toggle('active');
-        this.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
     });
 
-    // 2. Smooth Scrolling
+    // 4. Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            
             window.scrollTo({
                 top: target.offsetTop - 80,
                 behavior: 'smooth'
             });
-            
-            // Mobil menüyü kapat
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '☰';
-            }
         });
     });
 
-    // 3. Etkinlik Takvimi Dinamik Yüklenmesi
-    const loadCalendar = () => {
-        const calendar = document.querySelector('.calendar');
-        if (!calendar) return;
-        
-        // Burada API'den veri çekebilirsiniz (örnek: Google Calendar API)
-        // Şimdilik placeholder'ı değiştirelim
-        calendar.innerHTML = `
-            <div class="calendar-grid">
-                ${Array.from({length: 12}, (_, i) => `
-                    <div class="month">
-                        <h4>${['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran',
-                               'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'][i]}</h4>
-                        <div class="days">
-                            ${Array.from({length: 30}, (_, d) => `
-                                <div class="day ${d % 7 === 0 ? 'event-day' : ''}">
-                                    ${d + 1}
-                                    ${d % 7 === 0 ? '<span class="event-tooltip">Workshop</span>' : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `).join('')}
+    // 5. Etkinlik Kartlarını Dinamik Yükle
+    const events = [
+        {
+            title: "Robotik Workshop",
+            date: "15 Ekim 2023",
+            desc: "Temel robotik ve Arduino eğitimi",
+            icon: "fas fa-robot"
+        },
+        {
+            title: "Web Geliştirme Bootcamp",
+            date: "22 Ekim 2023",
+            desc: "HTML, CSS ve JS temelleri",
+            icon: "fas fa-code"
+        }
+    ];
+
+    const eventGrid = document.querySelector('.event-grid');
+    events.forEach(event => {
+        eventGrid.innerHTML += `
+            <div class="event-card">
+                <div class="event-icon">
+                    <i class="${event.icon}"></i>
+                </div>
+                <h3>${event.title}</h3>
+                <p class="event-date">${event.date}</p>
+                <p>${event.desc}</p>
+                <a href="#calendar" class="event-button">Detaylar</a>
             </div>
         `;
-    };
-
-    // 4. Kartlara Hover Efekti
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-            this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.1)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.05)';
-        });
     });
 
-    // 5. Form Gönderimi (İletişim formu eklerseniz)
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mesajınız alındı! En kısa sürede dönüş yapacağız.');
-            this.reset();
-        });
-    }
-
-    // 6. Sayfa Scroll Animasyonları
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        
-        // Navbar'a scroll'da gölge ekle
-        if (scrollPosition > 50) {
-            document.querySelector('.navbar').style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-        } else {
-            document.querySelector('.navbar').style.boxShadow = 'none';
-        }
-    });
-
-    // Takvimi yükle
-    loadCalendar();
-});
-
-// AOS Animasyon Initialization
-if (typeof AOS !== 'undefined') {
-    AOS.init({
-        duration: 800,
-        once: true,
-        easing: 'ease-in-out-quad'
-    });
-}
-// Google Calendar API entegrasyonu örneği
-async function loadRealCalendar() {
-    const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/[CALENDAR_ID]/events?key=[API_KEY]');
-    const data = await response.json();
-    console.log(data.items); // Etkinlikleri işle
-}
-// Tema değiştirme butonu ekleyin
-const themeToggle = document.createElement('button');
-themeToggle.innerHTML = '🌙';
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    // 6. Sayfa Yüklendiğinde Tema Kontrolü
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.innerHTML = savedTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
 });
