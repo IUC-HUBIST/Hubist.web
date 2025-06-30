@@ -727,3 +727,15 @@ footer {
     gap: 15px;
   }
 }
+nav ul li .button {
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+nav ul li .button:hover {
+  background-color: #1d4ed8;
+}
