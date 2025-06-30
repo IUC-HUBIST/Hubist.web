@@ -5,6 +5,7 @@ export default function Takvim() {
       <ul>
         <li>1 Aralık 2023: Yılsonu Sergisi</li>
         <li>15 Ocak 2024: Teknoloji Semineri</li>
+        {/* Yeni etkinlik eklemek için buraya <li> satırları ekleyin */}
       </ul>
     </div>
   );
