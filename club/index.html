@@ -3,108 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUBİST | Teknoloji ve İnovasyon Kulübü</title>
-    
-    <!-- Premium Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..800&display=swap" rel="stylesheet">
-    
-    <!-- Icon Set -->
+    <title>HUBİST Teknoloji Kulübü</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animasyon -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css" rel="stylesheet">
-    
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.ico">
 </head>
 <body>
-    <!-- Glassmorphism Navigation -->
-    <nav class="navbar glass">
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <img src="assets/img/logo.svg" alt="HUBİST" class="logo-mark">
-                <span class="logo-text">HUBİST <span>KULÜP</span></span>
+                <img src="assets/img/logo.png" alt="HUBİST Kulüp" width="120">
             </a>
-            
             <div class="nav-links">
-                <a href="#home" class="nav-link active" data-text="Ana Sayfa">Ana Sayfa</a>
-                <a href="#about" class="nav-link" data-text="Hakkımızda">Hakkımızda</a>
-                <a href="#events" class="nav-link" data-text="Etkinlikler">Etkinlikler</a>
-                <a href="#calendar" class="nav-link" data-text="Takvim">Takvim</a>
-                <a href="#contact" class="nav-link" data-text="İletişim">İletişim</a>
+                <a href="#home" class="active">Anasayfa</a>
+                <a href="#events">Etkinlikler</a>
+                <a href="#calendar">Takvim</a>
+                <a href="#gallery">Galeri</a>
+                <a href="#contact">İletişim</a>
+                <button id="theme-toggle"><i class="fas fa-moon"></i></button>
             </div>
-            
-            <div class="nav-actions">
-                <button id="theme-toggle" class="icon-button">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <a href="../index.html" class="nav-button">
-                    Takım Sayfası <i class="fas fa-arrow-right"></i>
-                </a>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            
-            <button class="mobile-menu-btn">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Parallax Hero Section -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg" data-parallax="scroll" data-image-src="assets/img/hero-bg.jpg"></div>
-        
-        <div class="hero-overlay"></div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-                    <span class="text-gradient">Teknoloji</span> ve 
-                    <span class="text-gradient">İnovasyon</span>
-                </h1>
-                
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                    Üniversitemizde geleceği şekillendiriyoruz
-                </p>
-                
-                <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
-                    <a href="#events" class="btn btn-primary">
-                        <i class="fas fa-calendar-check"></i> Etkinliklere Katıl
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-users"></i> Bize Katıl
-                    </a>
-                </div>
+        <div class="hero-content">
+            <h1>Teknolojiye <span>Yön Veriyoruz</span></h1>
+            <p>İnovasyon ve mühendislikle geleceği şekillendiriyoruz</p>
+            <div class="hero-buttons">
+                <a href="#events" class="btn btn-primary">Etkinliklere Katıl</a>
+                <a href="#contact" class="btn btn-secondary">Bize Ulaşın</a>
             </div>
         </div>
-        
-        <!-- Social Media Float -->
         <div class="social-float">
-            <a href="#" class="social-icon" data-tooltip="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-icon" data-tooltip="Discord">
-                <i class="fab fa-discord"></i>
-            </a>
-            <a href="#" class="social-icon" data-tooltip="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
-        
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
+            <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram" width="24"></a>
+            <a href="#"><img src="assets/icons/discord.svg" alt="Discord" width="24"></a>
         </div>
     </section>
 
-    <!-- Diğer bölümler -->
-    
-    <script src="assets/js/main.js"></script>
+    <!-- Events Section -->
+    <section class="section" id="events">
+        <div class="container">
+            <h2>Etkinliklerimiz</h2>
+            <div class="event-grid" id="event-container">
+                <!-- JS ile dolacak -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
